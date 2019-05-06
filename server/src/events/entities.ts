@@ -2,23 +2,19 @@ import {
   BaseEntity,
   PrimaryGeneratedColumn,
   Column,
-  Entity
-  // OneToMany,
-  // ManyToOne,
-  // ManyToMany,
-  // JoinTable
+  Entity,
+  OneToMany,
+  ManyToOne
 } from "typeorm";
 import {
   IsString,
   Length,
   MinLength,
   IsUrl,
-  IsNumber,
-  IsDate
+  IsDate,
+  IsNumber
 } from "class-validator";
-// import User from "../users/entity";
 
-// export type Date = "date";
 
 @Entity()
 export class Event extends BaseEntity {
@@ -39,18 +35,40 @@ export class Event extends BaseEntity {
   @Column("text")
   picture: string;
 
-  @IsNumber()
-  @Column("text")
-  price: number;
+  @IsDate()
+  @Column("date", { name: "start_date" })
+  startDate: Date;
 
   @IsDate()
-  @Column("integer")
-  start_date: Date;
+  @Column("date", { name: "end_date" })
+  endDate: Date;
 
-  @IsDate()
-  @Column("integer")
-  end_date: Date;
+  // @OneToMany(_ => Ticket, ticket => ticket.event, { eager: true })
+  // tickets: Ticket[];
 }
+
+// @Entity()
+// export class Ticket extends BaseEntity {
+//   @PrimaryGeneratedColumn()
+//   id?: number;
+  
+//   @ManyToOne(_ => Event, event => event.tickets)
+//   event: Event;
+
+//   @IsUrl()
+//   @Column("text")
+//   picture: string;
+
+//   @IsNumber()
+//   @Column("text")
+//   price: number;
+
+//   @IsString()
+//   @MinLength(5)
+//   @Column("text")
+//   description: string;
+
+// }
 
 // @Entity()
 // export class Player extends BaseEntity {

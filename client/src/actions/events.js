@@ -6,7 +6,6 @@ import { isExpired } from "../jwt";
 export const ADD_EVENT = "ADD_EVENT";
 export const UPDATE_EVENT = "UPDATE_EVENT";
 export const UPDATE_EVENTS = "UPDATE_EVENTS";
-// export const JOIN_EVENT_SUCCESS = "JOIN_EVENT_SUCCESS";
 export const UPDATE_EVENT_SUCCESS = "UPDATE_EVENT_SUCCESS";
 
 const updateEvents = events => ({
@@ -23,9 +22,6 @@ const updateEventSuccess = () => ({
   type: UPDATE_EVENT_SUCCESS
 });
 
-// const joinEventSuccess = () => ({
-//   type: JOIN_EVENT_SUCCESS
-// });
 
 export const getEvents = () => (dispatch, getState) => {
   const state = getState();
@@ -41,18 +37,6 @@ export const getEvents = () => (dispatch, getState) => {
     .catch(err => console.error(err));
 };
 
-// export const joinEvent = eventId => (dispatch, getState) => {
-//   const state = getState();
-//   const jwt = state.currentUser.jwt;
-
-//   if (isExpired(jwt)) return dispatch(logout());
-
-//   request
-//     .post(`${baseUrl}/eventss/${eventId}/players`)
-//     .set("Authorization", `Bearer ${jwt}`)
-//     .then(_ => dispatch(joinGameSuccess()))
-//     .catch(err => console.error(err));
-// };
 
 export const createEvent = () => (dispatch, getState) => {
   const state = getState();
@@ -67,7 +51,7 @@ export const createEvent = () => (dispatch, getState) => {
     .catch(err => console.error(err));
 };
 
-export const updateEvent = (eventId, position) => (dispatch, getState) => {
+export const updateEvent = (eventId) => (dispatch, getState) => {
   const state = getState();
   const jwt = state.currentUser.jwt;
 
@@ -76,7 +60,6 @@ export const updateEvent = (eventId, position) => (dispatch, getState) => {
   request
     .patch(`${baseUrl}/events/${eventId}`)
     .set("Authorization", `Bearer ${jwt}`)
-    .send(position)
     .then(_ => dispatch(updateEventSuccess()))
     .catch(err => console.error(err));
 };
