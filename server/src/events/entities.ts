@@ -1,24 +1,13 @@
+import { Ticket } from '../ticket/entity';
 import {
   BaseEntity,
   PrimaryGeneratedColumn,
   Column,
-  Entity
-  // OneToMany,
-  // ManyToOne,
-  // ManyToMany,
-  // JoinTable
-} from "typeorm";
-import {
-  IsString,
-  Length,
-  MinLength,
-  IsUrl,
-  IsNumber,
-  IsDate
-} from "class-validator";
-// import User from "../users/entity";
+  Entity,
+  OneToMany
+} from 'typeorm';
+import { IsString, Length, MinLength, IsUrl, IsDate } from 'class-validator';
 
-// export type Date = "date";
 
 @Entity()
 export class Event extends BaseEntity {
@@ -27,30 +16,30 @@ export class Event extends BaseEntity {
 
   @IsString()
   @Length(2, 25)
-  @Column("text")
+  @Column('text')
   name: string;
 
   @IsString()
   @MinLength(5)
-  @Column("text")
+  @Column('text')
   description: string;
 
   @IsUrl()
-  @Column("text")
+  @Column('text')
   picture: string;
 
-  @IsNumber()
-  @Column("text")
-  price: number;
-
   @IsDate()
-  @Column("date")
+  @Column('date', { name: 'start_date' })
   startDate: Date;
 
   @IsDate()
-  @Column("date")
+  @Column('date', { name: 'end_date' })
   endDate: Date;
+
+  @OneToMany(_ => Ticket, ticket => ticket.event, { eager: true })
+  tickets: Ticket[];
 }
+
 
 // @Entity()
 // export class Player extends BaseEntity {
@@ -63,14 +52,14 @@ export class Event extends BaseEntity {
 //   @ManyToOne(_ => Game, game => game.players)
 //   game: Game;
 
-//   // @Column("integer", { name: "user_id" })
+//   // @Column('integer', { name: 'user_id' })
 //   // userId: number;
 
 //   @ManyToMany(() => Word, { eager: true })
 //   @JoinTable()
 //   words: Word[];
 
-//   @Column("boolean", { default: false })
+//   @Column('boolean', { default: false })
 //   winner: boolean;
 // }
 
@@ -82,12 +71,12 @@ export class Event extends BaseEntity {
 //   @ManyToOne(_ => Game, game => game.players)
 //   game: Game;
 
-//   @Column("integer")
+//   @Column('integer')
 //   row: number;
 
-//   @Column("integer")
+//   @Column('integer')
 //   column: number;
 
-//   @Column("text")
+//   @Column('text')
 //   text: string;
 // }

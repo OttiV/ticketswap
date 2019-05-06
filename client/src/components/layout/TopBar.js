@@ -17,7 +17,7 @@ const TopBar = (props) => {
     <AppBar className="AppBar" position="absolute" style={{zIndex:10}}>
       <Toolbar className="Toolbar" >
         <Typography className="Typography" variant="title" color="inherit" style={{flex: 1}}>
-          <h1>Find the Simpson's</h1>
+          <h1>Ticketswap</h1>
         </Typography>
         {
           user &&
@@ -37,7 +37,7 @@ const TopBar = (props) => {
           <Button color="inherit" onClick={() => history.push('/games')}>All Games</Button>
         }
         {
-          /games$/.test(location.pathname) &&
+          /events$/.test(location.pathname) &&
           <Button color="inherit" onClick={() => history.push('/logout')}>Log out</Button>
         }
       </Toolbar>
