@@ -2,7 +2,7 @@ import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany } from 't
 import { Exclude } from 'class-transformer';
 import { MinLength, IsString, IsEmail } from 'class-validator';
 import * as bcrypt from 'bcrypt'
-import { Player } from '../games/entities';
+// import { Player } from '../games/entities';
 
 @Entity()
 export default class User extends BaseEntity {
@@ -41,6 +41,7 @@ export default class User extends BaseEntity {
 
   // this is a relation, read more about them here:
   // http://typeorm.io/#/many-to-one-one-to-many-relations
-  @OneToMany(_ => Player, player => player.user) 
-  players: Player[]
+  
+  // @OneToMany(_ => Player, player => player.user) 
+  // players: Player[]
 }
