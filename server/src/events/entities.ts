@@ -44,12 +44,12 @@ export class Event extends BaseEntity {
   price: number;
 
   @IsDate()
-  @Column("date")
-  startDate: Date;
+  @Column("integer")
+  start_date: Date;
 
   @IsDate()
-  @Column("date")
-  endDate: Date;
+  @Column("integer")
+  end_date: Date;
 }
 
 // @Entity()
