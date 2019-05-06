@@ -1,19 +1,12 @@
+import { Ticket } from '../ticket/entity';
 import {
   BaseEntity,
   PrimaryGeneratedColumn,
   Column,
   Entity,
-  OneToMany,
-  ManyToOne
-} from "typeorm";
-import {
-  IsString,
-  Length,
-  MinLength,
-  IsUrl,
-  IsDate,
-  IsNumber
-} from "class-validator";
+  OneToMany
+} from 'typeorm';
+import { IsString, Length, MinLength, IsUrl, IsDate } from 'class-validator';
 
 
 @Entity()
@@ -23,52 +16,30 @@ export class Event extends BaseEntity {
 
   @IsString()
   @Length(2, 25)
-  @Column("text")
+  @Column('text')
   name: string;
 
   @IsString()
   @MinLength(5)
-  @Column("text")
+  @Column('text')
   description: string;
 
   @IsUrl()
-  @Column("text")
+  @Column('text')
   picture: string;
 
   @IsDate()
-  @Column("date", { name: "start_date" })
+  @Column('date', { name: 'start_date' })
   startDate: Date;
 
   @IsDate()
-  @Column("date", { name: "end_date" })
+  @Column('date', { name: 'end_date' })
   endDate: Date;
 
-  // @OneToMany(_ => Ticket, ticket => ticket.event, { eager: true })
-  // tickets: Ticket[];
+  @OneToMany(_ => Ticket, ticket => ticket.event, { eager: true })
+  tickets: Ticket[];
 }
 
-// @Entity()
-// export class Ticket extends BaseEntity {
-//   @PrimaryGeneratedColumn()
-//   id?: number;
-  
-//   @ManyToOne(_ => Event, event => event.tickets)
-//   event: Event;
-
-//   @IsUrl()
-//   @Column("text")
-//   picture: string;
-
-//   @IsNumber()
-//   @Column("text")
-//   price: number;
-
-//   @IsString()
-//   @MinLength(5)
-//   @Column("text")
-//   description: string;
-
-// }
 
 // @Entity()
 // export class Player extends BaseEntity {
@@ -81,14 +52,14 @@ export class Event extends BaseEntity {
 //   @ManyToOne(_ => Game, game => game.players)
 //   game: Game;
 
-//   // @Column("integer", { name: "user_id" })
+//   // @Column('integer', { name: 'user_id' })
 //   // userId: number;
 
 //   @ManyToMany(() => Word, { eager: true })
 //   @JoinTable()
 //   words: Word[];
 
-//   @Column("boolean", { default: false })
+//   @Column('boolean', { default: false })
 //   winner: boolean;
 // }
 
@@ -100,12 +71,12 @@ export class Event extends BaseEntity {
 //   @ManyToOne(_ => Game, game => game.players)
 //   game: Game;
 
-//   @Column("integer")
+//   @Column('integer')
 //   row: number;
 
-//   @Column("integer")
+//   @Column('integer')
 //   column: number;
 
-//   @Column("text")
+//   @Column('text')
 //   text: string;
 // }
