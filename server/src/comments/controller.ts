@@ -34,16 +34,17 @@ import {
     @Authorized()
     @Post("/comments")
     @HttpCode(201)
-    async createComment(@CurrentUser() user: User, @Param("id") commentId: number) {
-      const entity = await Comment.create().save();
-  
-      const comment = await Comment.findOneById(entity.id);
-  
+    // async 
+    createComment(@Body() comment: Comment) {
+      // const entity = await Comment.create().save();
+
+      // const comment = await Comment.findOneById(entity.id);
+      
       io.emit("action", {
         type: "ADD_COMMENT",
         payload: comment
       });
-  
+      
       return comment.save();
     }
   

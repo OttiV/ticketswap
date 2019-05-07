@@ -1,5 +1,6 @@
 import { Comment } from "../comments/entity";
 import { Event } from "../events/entities";
+import User from "../users/entity";
 import {
   BaseEntity,
   PrimaryGeneratedColumn,
@@ -34,4 +35,7 @@ export class Ticket extends BaseEntity {
 
   @OneToMany(_ => Comment, comment => comment.ticket, { eager: true })
   comments: Comment[];
+
+  @ManyToOne(_ => User, user => user.ticket)
+  user: User[];
 }

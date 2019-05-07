@@ -1,9 +1,9 @@
-import { EVENTS_FETCHED, EVENT_UPDATE_SUCCESS } from "../actions/events";
+import { FETCH_EVENTS, EVENT_UPDATE_SUCCESS } from "../actions/events";
 
 export default (state = [], action = []) => {
   console.log("ACTIONS:", action);
   switch (action.type) {
-    case EVENTS_FETCHED:
+    case FETCH_EVENTS:
       return action.events;
 
     case EVENT_UPDATE_SUCCESS:
@@ -13,4 +13,3 @@ export default (state = [], action = []) => {
       return state;
   }
 };
-

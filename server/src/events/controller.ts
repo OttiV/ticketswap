@@ -25,6 +25,7 @@ export default class EventController {
     const events = await Event.find();
     return { events };
   }
+
   @Get("/events/:id([0-9])")
   getEvent(@Param("id") id: number) {
     return Event.findOneById(id);

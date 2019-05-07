@@ -1,3 +1,4 @@
+import { Ticket } from "./../tickets/entity";
 import { Comment } from "./../comments/entity";
 import {
   BaseEntity,
@@ -37,6 +38,9 @@ export default class User extends BaseEntity {
 
   @OneToMany(_ => Comment, comment => comment.user, { eager: true })
   comment: Comment[];
+
+  @OneToMany(_ => Ticket, ticket => ticket.user, { eager: true })
+  tickets: Ticket[];
 
   async setPassword(rawPassword: string) {
     const hash = await bcrypt.hash(rawPassword, 10);
