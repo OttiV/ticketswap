@@ -35,8 +35,8 @@ useKoaServer(app, {
 
       try {
         return !!(token && verify(token));
-      } catch (e) {
-        throw new BadRequestError(e);
+      } catch (error) {
+        throw new BadRequestError(error);
       }
     }
 

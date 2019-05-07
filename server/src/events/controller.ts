@@ -16,7 +16,6 @@ import {
 import User from "../users/entity";
 import { Event } from "./entities";
 import { io } from "../index";
-// import { IndexMetadata } from 'typeorm/metadata/IndexMetadata';
 
 @JsonController()
 export default class EventController {
@@ -34,20 +33,16 @@ export default class EventController {
   @Authorized()
   @Post("/events")
   @HttpCode(201)
-  async createEvent(@CurrentUser() user: User, @Param("id") eventId: number) {
-    const entity = await Event.create().save();
+  createEvent(@Body() event: Event) {
+      io.emit("action", {
+        type: "ADD_EVENT",
+        payload: event
+      });
+    
 
-    const event = await Event.findOneById(entity.id);
-
-    io.emit("action", {
-      type: "ADD_EVENT",
-      payload: event
-    });
-console.log("CREATE EVENT", event)
     return event.save();
   }
 
-  //Put request functional
   @Authorized()
   @Put("/events/:id")
   async updateEvent(@Param("id") id: number, @Body() update: Partial<Event>) {

@@ -23,7 +23,7 @@ export default class UserController {
     return user
   }
 
-  @Authorized()
+  // @Authorized()
   @Get('/users/:id([0-9]+)')
   getUser(
     @Param('id') id: number

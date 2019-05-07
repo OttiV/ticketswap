@@ -36,6 +36,7 @@ export class Ticket extends BaseEntity {
   @OneToMany(_ => Comment, comment => comment.ticket, { eager: true })
   comments: Comment[];
 
-  @ManyToOne(_ => User, user => user.ticket)
+  @ManyToOne(_ => User, user => user.tickets)
   user: User[];
+  
 }

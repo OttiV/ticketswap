@@ -1,10 +1,11 @@
 import { Ticket } from '../tickets/entity';
+import User from '../users/entity';
 import {
   BaseEntity,
   PrimaryGeneratedColumn,
   Column,
   Entity,
-  OneToMany
+  OneToMany, ManyToOne
 } from 'typeorm';
 import { IsString, Length, MinLength, IsUrl, IsDate } from 'class-validator';
 
@@ -29,15 +30,18 @@ export class Event extends BaseEntity {
   picture: string;
 
   @IsDate()
-  @Column('date', { name: 'start_date' })
+  @Column('date')
   startDate: Date;
 
   @IsDate()
-  @Column('date', { name: 'end_date' })
+  @Column('date')
   endDate: Date;
 
   @OneToMany(_ => Ticket, ticket => ticket.event, { eager: true })
   tickets: Ticket[];
+
+  @ManyToOne(_ => User, user => user.events)
+  user: User[];
 }
 
 

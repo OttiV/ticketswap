@@ -10,8 +10,8 @@ export const storeJwt = store => next => action => {
       localStorage.removeItem(localStorageJwtKey)
     }
   }
-  catch (e) {
-    console.log(`Interaction with LocalStorage went wrong`, e)
+  catch (error) {
+    console.log(`Interaction with LocalStorage went wrong`, error)
   }
 
   next(action)

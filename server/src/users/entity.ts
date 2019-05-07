@@ -1,3 +1,4 @@
+import { Event } from './../events/entities';
 import { Ticket } from "./../tickets/entity";
 import { Comment } from "./../comments/entity";
 import {
@@ -41,6 +42,9 @@ export default class User extends BaseEntity {
 
   @OneToMany(_ => Ticket, ticket => ticket.user, { eager: true })
   tickets: Ticket[];
+
+  @OneToMany(_ => Event, event => event.user, { eager: true })
+  events: Event[];
 
   async setPassword(rawPassword: string) {
     const hash = await bcrypt.hash(rawPassword, 10);

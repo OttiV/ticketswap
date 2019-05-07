@@ -48,7 +48,7 @@ import {
       return comment.save();
     }
   
-    //Put request functional
+   
     @Authorized()
     @Put("/comments/:id")
     async updateComment(@Param("id") id: number, @Body() update: Partial<Comment>) {
