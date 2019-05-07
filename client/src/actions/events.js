@@ -71,7 +71,7 @@ export const updateEvent = (id, formValues) => dispatch => {
   newEvent.id = id;
 
   request
-    .put(`${baseUrl}/event/${id}`)
+    .put(`${baseUrl}/events/${id}`)
     .send(newEvent)
     .then(() => {
       dispatch(eventUpdateSuccess(newEvent));

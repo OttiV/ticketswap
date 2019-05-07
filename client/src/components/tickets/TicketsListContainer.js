@@ -1,12 +1,12 @@
 import React from "react";
-// import { loadTickets } from "../actions/tickets";
+import { loadTickets } from "../actions/tickets";
 import { connect } from "react-redux";
 import TicketsList from "./TicketsList";
 
 
 class TicketsListContainer extends React.Component {
   componentDidMount() {
-    // this.props.loadTickets(this.props.tickets);
+    this.props.loadTickets(this.props.tickets);
   }
   
   render() {
