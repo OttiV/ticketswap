@@ -38,5 +38,7 @@ export class Ticket extends BaseEntity {
 
   @ManyToOne(_ => User, user => user.tickets)
   user: User[];
-  
+
+  // @ManyToOne(_ => Comment, comment => comment.tickets)
+  // comment: Comment[];
 }

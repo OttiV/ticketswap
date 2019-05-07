@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./EventsList.css";
 
 export default class EventsList extends Component {
-  renderEvent(event) {
+  renderEvent = (event)  => {
     return (
       <li className="Events" key={event.id}>
         <Link to={`/events/${encodeURIComponent(event.id)}`}>
@@ -16,6 +16,7 @@ export default class EventsList extends Component {
 
   render() {
     const { events } = this.props;
+    console.log("TEST PROPS EVENTLIST", events)
 
     return (
       <div className="EventsList">

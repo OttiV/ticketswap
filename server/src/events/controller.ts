@@ -1,19 +1,4 @@
-import {
-  JsonController,
-  Authorized,
-  CurrentUser,
-  Post,
-  Param,
-  BadRequestError,
-  HttpCode,
-  NotFoundError,
-  ForbiddenError,
-  Get,
-  Put,
-  Body,
-  Patch
-} from "routing-controllers";
-import User from "../users/entity";
+import { JsonController, Authorized, Post, Param, HttpCode, NotFoundError, Get, Put, Body} from "routing-controllers";
 import { Event } from "./entities";
 import { io } from "../index";
 
@@ -25,7 +10,7 @@ export default class EventController {
     return { events };
   }
 
-  @Get("/events/:id([0-9])")
+  @Get("/events/:id([0-9]+)")
   getEvent(@Param("id") id: number) {
     return Event.findOneById(id);
   }
@@ -38,7 +23,6 @@ export default class EventController {
         type: "ADD_EVENT",
         payload: event
       });
-    
 
     return event.save();
   }

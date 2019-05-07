@@ -4,6 +4,7 @@ import {
   Column,
   Entity,
   ManyToOne
+  // OneToMany
 } from "typeorm";
 
 import { IsString, MinLength } from "class-validator";
@@ -22,6 +23,9 @@ export class Comment extends BaseEntity {
 
   @ManyToOne(_ => Ticket, ticket => ticket.comments)
   ticket: Ticket[];
+
+  // @OneToMany(_ => Ticket, ticket => ticket.comment, { eager: true })
+  // tickets: Ticket[];
 
   @ManyToOne(_ => User, user => user.comment)
   user: User[];

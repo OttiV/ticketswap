@@ -1,21 +1,19 @@
 import request from "superagent";
-
+import { baseUrl } from "../constants";
 export const FETCH_EVENTS = "FETCH_EVENTS";
 // export const EVENT_CREATE_SUCCESS = "EVENT_CREATE_SUCCESS";
 export const EVENT_FETCHED = "EVENT_FETCHED";
 // export const EVENT_DELETE_SUCCESS = "EVENT_DELETE_SUCCESS";
 export const EVENT_UPDATE_SUCCESS = "EVENT_UPDATE_SUCCESS";
 
-const baseUrl = "http://localhost:4000";
-
 const fetchEvents = events => ({
   type: FETCH_EVENTS,
   events
 });
 
-export const loadEvents = () => dispatch => {
+export const loadEvents = () => (dispatch, getState) => {
   console.log("test");
-  // if (getState().events) return;
+  const state = getState();
   request
     .get(`${baseUrl}/events`)
     .then(response =>
@@ -58,7 +56,7 @@ export const updateEvent = (id, formValues) => dispatch => {
 
   request
     .put(`${baseUrl}/event/${id}`)
-    .send(newEvent) 
+    .send(newEvent)
     .then(() => {
       dispatch(eventUpdateSuccess(newEvent));
     })
