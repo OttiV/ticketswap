@@ -7,7 +7,8 @@ class EventFormContainer extends React.Component {
   state = {
     name: "",
     description: "",
-    price: "",
+    startDate: "",
+    endDate: "",
     picture: ""
   };
 
@@ -23,7 +24,8 @@ class EventFormContainer extends React.Component {
     this.setState({
       name: "",
       description: "",
-      price: "",
+      startDate: "",
+      endDate: "",
       picture: ""
     });
   };
@@ -35,7 +37,6 @@ class EventFormContainer extends React.Component {
         onChange={this.onChange}
         values={this.state}
       />
-      
     );
   }
 }
@@ -44,3 +45,4 @@ export default connect(
   null,
   { createEvent }
 )(EventFormContainer);
+

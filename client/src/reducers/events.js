@@ -1,30 +1,16 @@
-import { ADD_EVENT, UPDATE_EVENT, UPDATE_EVENTS } from "../actions/events";
-import { USER_LOGOUT } from "../actions/users";
+import { EVENTS_FETCHED, EVENT_UPDATE_SUCCESS } from "../actions/events";
 
-export default (state = null, { type, payload }) => {
-  switch (type) {
-    case USER_LOGOUT:
-      return null;
+export default (state = [], action = []) => {
+  console.log("ACTIONS:", action);
+  switch (action.type) {
+    case EVENTS_FETCHED:
+      return action.events;
 
-    case ADD_EVENT:
-      return {
-        ...state,
-        [payload.id]: payload
-      };
-
-    case UPDATE_EVENT:
-      return {
-        ...state,
-        [payload.id]: payload
-      };
-
-    case UPDATE_EVENTS:
-      return payload.reduce((events, event) => {
-        events[event.id] = event;
-        return events;
-      }, {});
+    case EVENT_UPDATE_SUCCESS:
+      return action.event;
 
     default:
       return state;
   }
 };
+

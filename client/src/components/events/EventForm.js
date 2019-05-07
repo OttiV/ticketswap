@@ -1,14 +1,14 @@
 import React from "react";
-// import "./EventForm.css";
+import "./EventForm.css";
 
 export default class EventForm extends React.Component {
   render() {
     return (
       <form className={"EventForm"} onSubmit={this.props.onSubmit}>
-        <label htmlFor="name">Title:</label>
+        <label htmlFor="title">Title:</label>
         <br />
         <input
-          name="name"
+          name="title"
           value={this.props.name}
           onChange={this.props.onChange}
           className={"EventForm_input"}
@@ -25,11 +25,20 @@ export default class EventForm extends React.Component {
           className={"EventForm_textarea"}
         />
         <br />
-        <label htmlFor="price">Price:</label>
+        <label htmlFor="start_date">Start Date:</label>
         <br />
         <input
-          name="price"
-          value={this.props.price}
+          name="start_date"
+          value={this.props.startDate}
+          onChange={this.props.onChange}
+          className={"EventForm_input"}
+        />
+        <br />
+        <label htmlFor="end_date">End date:</label>
+        <br />
+        <input
+          name="end_date"
+          value={this.props.endDate}
           onChange={this.props.onChange}
           className={"EventForm_input"}
         />

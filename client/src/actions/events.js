@@ -1,65 +1,60 @@
-import * as request from "superagent";
-import { baseUrl } from "../constants";
-import { logout } from "./users";
-import { isExpired } from "../jwt";
+import request from "superagent";
 
-export const ADD_EVENT = "ADD_EVENT";
-export const UPDATE_EVENT = "UPDATE_EVENT";
-export const UPDATE_EVENTS = "UPDATE_EVENTS";
-export const UPDATE_EVENT_SUCCESS = "UPDATE_EVENT_SUCCESS";
+export const EVENTS_FETCHED = "EVENTS_FETCHED";
+// export const EVENT_CREATE_SUCCESS = "EVENT_CREATE_SUCCESS";
+export const EVENT_FETCHED = "EVENT_FETCHED";
+// export const EVENT_DELETE_SUCCESS = "EVENT_DELETE_SUCCESS";
+export const EVENT_UPDATE_SUCCESS = "EVENT_UPDATE_SUCCESS";
 
-const updateEvents = events => ({
-  type: UPDATE_EVENTS,
-  payload: events
+const baseUrl = "http://localhost:4000";
+
+const eventsFetched = events => ({
+  type: EVENTS_FETCHED,
+  events
 });
 
-const addEvent = event => ({
-  type: ADD_EVENT,
-  payload: event
+export const loadEvents = () => (dispatch, getState) => {
+  console.log("test");
+  // if (getState().events) return;
+
+  request(`${baseUrl}/events`)
+    .then(response => {
+      console.log("RESPONSE:", response);
+      dispatch(eventsFetched(response.body.events));
+    })
+    .catch(console.error);
+};
+
+export const eventFetched = event => ({
+  type: EVENT_FETCHED,
+  event
 });
 
-const updateEventSuccess = () => ({
-  type: UPDATE_EVENT_SUCCESS
+export const loadEvent = id => dispatch => {
+  request
+    .get(`${baseUrl}/events/${id}`)
+    .then(response => {
+      console.log(response.body);
+      dispatch(eventFetched(response.body));
+    })
+    .catch(console.error);
+};
+export const eventUpdateSuccess = event => ({
+  type: EVENT_UPDATE_SUCCESS,
+  event
 });
 
-
-export const getEvents = () => (dispatch, getState) => {
-  const state = getState();
-  if (!state.currentUser) return null;
-  const jwt = state.currentUser.jwt;
-
-  if (isExpired(jwt)) return dispatch(logout());
+export const updateEvent = (id, formValues) => dispatch => {
+  console.log(id, formValues);
+  const newEvent = formValues;
+  newEvent.id = id;
 
   request
-    .get(`${baseUrl}/events`)
-    .set("Authorization", `Bearer ${jwt}`)
-    .then(result => dispatch(updateEvents(result.body)))
-    .catch(err => console.error(err));
+    .put(`${baseUrl}/event/${id}`)
+    .send(newEvent) //to send the data to the DB
+    .then(() => {
+      dispatch(eventUpdateSuccess(newEvent));
+    })
+    .catch(console.error);
 };
 
-
-export const createEvent = () => (dispatch, getState) => {
-  const state = getState();
-  const jwt = state.currentUser.jwt;
-
-  if (isExpired(jwt)) return dispatch(logout());
-
-  request
-    .post(`${baseUrl}/events`)
-    .set("Authorization", `Bearer ${jwt}`)
-    .then(result => dispatch(addEvent(result.body)))
-    .catch(err => console.error(err));
-};
-
-export const updateEvent = (eventId) => (dispatch, getState) => {
-  const state = getState();
-  const jwt = state.currentUser.jwt;
-
-  if (isExpired(jwt)) return dispatch(logout());
-
-  request
-    .patch(`${baseUrl}/events/${eventId}`)
-    .set("Authorization", `Bearer ${jwt}`)
-    .then(_ => dispatch(updateEventSuccess()))
-    .catch(err => console.error(err));
-};

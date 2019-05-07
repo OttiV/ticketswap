@@ -1,4 +1,4 @@
-import { Ticket } from '../ticket/entity';
+import { Ticket } from '../tickets/entity';
 import {
   BaseEntity,
   PrimaryGeneratedColumn,

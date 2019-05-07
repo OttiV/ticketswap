@@ -1,19 +1,34 @@
-h2 {
-  margin-bottom: 16px;
-  font-size: 14px;
+.EventList {
+  text-align: center;
+  padding: 15px;
+  font-weight: 300;
+  background-color:  #00bfff;
+  display: flex;
+  flex-direction: column;
+}
+.Event {
+  border: solid #fff 0.2rem;
+  width: 350px;
+  height: 350px;
+  padding: 1rem;
+  margin: 0.4rem;
+  float: left;
+  border-radius: 2rem;
+
+}
+.Ticketswap{
+ font-size: 4rem;
+}
+.images {
+  border-radius: 2rem;
+  object-fit: cover;
+  width: 250px;
+  height: 250px;
+  margin: 2rem;
+  border: double #fff 0.5rem;
+  transition: transform .2s;
 }
 
-.game-card {
-  margin: 10px 10px 10px 0px;
-}
-
-.create-game {
-  margin-top: 10px !important;
-}
-
-.outer-paper {
-  margin: auto;
-  margin-top: 20px;
-  padding: 20px;
-  width: 60%;
+.images:hover {
+  transform: scale(1.5);
 }

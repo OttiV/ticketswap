@@ -9,7 +9,7 @@ class EventDetailsContainer extends React.Component {
   }
 
   //   onDelete = () => {
-  //     this.props.deleteAd(this.props.ad.id);
+  //     this.props.deleteEvent(this.props.event.id);
   //     this.props.history.push("/");
   //   };
   state = { editMode: false };
@@ -21,15 +21,17 @@ class EventDetailsContainer extends React.Component {
     this.setState({
       editMode: true,
       formValues: {
-        name: this.props.ad.name,
-        description: this.props.ad.description,
-        price: this.props.ad.price,
-        picture: this.props.ad.picture
+        name: this.props.event.name,
+        description: this.props.event.description,
+        startDate: this.props.event.startDate,
+        endDate: this.props.event.endDate,
+        picture: this.props.event.picture
       }
     });
   };
 
   onChange = event => {
+    // update the formValues property with the new data from the input field
     this.setState({
       formValues: {
         ...this.state.formValues,
