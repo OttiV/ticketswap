@@ -1,16 +1,8 @@
+import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, ManyToOne, OneToMany } from "typeorm";
+import { IsString, MinLength, IsUrl, IsNumber } from "class-validator";
 import { Comment } from "../comments/entity";
 import { Event } from "../events/entities";
 import User from "../users/entity";
-import {
-  BaseEntity,
-  PrimaryGeneratedColumn,
-  Column,
-  Entity,
-  ManyToOne,
-  OneToMany
-} from "typeorm";
-
-import { IsString, MinLength, IsUrl, IsNumber } from "class-validator";
 
 @Entity()
 export class Ticket extends BaseEntity {
@@ -38,7 +30,4 @@ export class Ticket extends BaseEntity {
 
   @ManyToOne(_ => User, user => user.tickets)
   user: User[];
-
-  // @ManyToOne(_ => Comment, comment => comment.tickets)
-  // comment: Comment[];
 }

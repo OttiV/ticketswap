@@ -1,7 +1,7 @@
 import request from "superagent";
 import { baseUrl } from "../constants";
 export const FETCH_EVENTS = "FETCH_EVENTS";
-// export const EVENT_CREATE_SUCCESS = "EVENT_CREATE_SUCCESS";
+export const EVENT_CREATE_SUCCESS = "EVENT_CREATE_SUCCESS";
 export const EVENT_FETCHED = "EVENT_FETCHED";
 // export const EVENT_DELETE_SUCCESS = "EVENT_DELETE_SUCCESS";
 export const EVENT_UPDATE_SUCCESS = "EVENT_UPDATE_SUCCESS";
@@ -44,6 +44,22 @@ export const loadEvent = id => dispatch => {
     })
     .catch(console.error);
 };
+
+export const eventCreateSuccess = event => ({
+  type: EVENT_CREATE_SUCCESS,
+  event
+});
+
+export const createEvent = data => dispatch => {
+  request
+    .post(`${baseUrl}/events`)
+    .send(data)
+    .then(response => {
+      dispatch(eventCreateSuccess(response.body));
+    })
+    .catch(console.error);
+};
+
 export const eventUpdateSuccess = event => ({
   type: EVENT_UPDATE_SUCCESS,
   event

@@ -1,4 +1,4 @@
-import { JsonController, Authorized, Post, Param, HttpCode, NotFoundError, Get, Put, Body} from "routing-controllers";
+import { JsonController, Authorized, Post, Param, HttpCode, NotFoundError, Get, Put, Body } from "routing-controllers";
 import { Event } from "./entities";
 import { io } from "../index";
 

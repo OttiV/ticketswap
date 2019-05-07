@@ -1,14 +1,4 @@
-import {
-  JsonController,
-  Get,
-  Param,
-  Put,
-  Body,
-  NotFoundError,
-  Post,
-  HttpCode,
-  Authorized
-} from "routing-controllers";
+import { JsonController, Get, Param, Put, Body, NotFoundError, Post, HttpCode, Authorized} from "routing-controllers";
 import { Ticket } from "./entity";
 
 @JsonController()

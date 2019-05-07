@@ -1,16 +1,10 @@
-import { Event } from './../events/entities';
-import { Ticket } from "./../tickets/entity";
-import { Comment } from "./../comments/entity";
-import {
-  BaseEntity,
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  OneToMany
-} from "typeorm";
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
 import { Exclude } from "class-transformer";
 import { MinLength, IsString, IsEmail } from "class-validator";
 import * as bcrypt from "bcrypt";
+import { Event } from './../events/entities';
+import { Ticket } from "./../tickets/entity";
+import { Comment } from "./../comments/entity";
 
 @Entity()
 export default class User extends BaseEntity {

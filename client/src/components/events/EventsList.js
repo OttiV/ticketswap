@@ -25,6 +25,14 @@ export default class EventsList extends Component {
         {!events && "Loading..."}
 
         {events && <ul>{events.map(this.renderEvent)}</ul>}
+
+        <br/>
+        <Link to={`/eventsForm`}>
+          <button className="AddEventButton">
+            Add Event
+          </button>
+        </Link>
+          
       </div>
     );
   }
