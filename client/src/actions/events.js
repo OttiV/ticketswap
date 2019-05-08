@@ -1,6 +1,6 @@
 import request from "superagent";
-import { isExpired } from "../jwt";
-import { logout } from "./users";
+// import { isExpired } from "../jwt";
+// import { logout } from "./users";
 import { baseUrl } from "../constants";
 export const FETCH_EVENTS = "FETCH_EVENTS";
 export const EVENT_CREATE_SUCCESS = "EVENT_CREATE_SUCCESS";

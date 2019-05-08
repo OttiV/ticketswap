@@ -4,11 +4,11 @@ import { io } from "../index";
 
 @JsonController()
 export default class CommentController {
-  // @Get("/comments")
-  // async allComments() {
-  //   const comments = await Comment.find();
-  //   return { comments };
-  // }
+  @Get("/comments")
+  async allComments() {
+    const comments = await Comment.find();
+    return { comments };
+  }
 
   @Get("/comments/:id([0-9]+)")
   getComment(@Param("id") id: number) {

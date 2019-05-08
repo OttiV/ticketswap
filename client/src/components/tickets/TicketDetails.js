@@ -1,5 +1,7 @@
 import React from "react";
 import TicketForm from "./TicketForm";
+import CommentsListContainer from "../comments/CommentsListContainer"
+
 import { Link } from "react-router-dom";
 import "../events/EventDetails.css";
 
@@ -18,9 +20,10 @@ export default function TicketDetails(props) {
           <button className="EventDetailsButtons" onClick={props.onEdit}>
             Edit
           </button>
+          <CommentsListContainer comments={props.comments} tickets={props.tickets} />
         </div>
       )}
-      {props.editMode &&  props.authenticated && (
+      {props.editMode &&  (
         <div className="EventForm">
           <TicketForm
             values={props.formValues}
