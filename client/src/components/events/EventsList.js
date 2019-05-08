@@ -7,7 +7,7 @@ export default class EventsList extends Component {
     return (
       <div className="Events" key={event.id}>
         <Link to={`/events/${encodeURIComponent(event.id)}`}>
-          {event.name} <br />
+         <div className="EventName"> {event.name} </div><br />
           <img className="images" src={event.picture} alt={event.description} />
         </Link>
       </div>

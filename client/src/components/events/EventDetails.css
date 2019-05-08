@@ -9,6 +9,42 @@
   justify-content: center;
 }
 
+.EventImage{
+  border-radius: 2rem;
+  flex-direction: row;
+  align-items: left;
+  justify-content: left;
+  text-align: center;
+}
+.Tickets{
+  /* border: solid #fff 0.2rem; */
+  /* width: 350px; */
+  /* height: 350px;  */
+  padding: 0.4rem;
+  margin: 0.4rem 0.6rem;
+  float: left;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+}
+.Ticket{
+  border: solid #fff 0.2rem;
+  border-radius: 2rem;
+  padding: o.4rem;
+  margin: 0.4rem 0.6rem;
+ 
+}
+.TicketImages{
+  border-radius: 2rem;
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+  margin: 0 2rem;
+}
 
 .EventDetailsButtons,
 .EventDetailsButtons:link,

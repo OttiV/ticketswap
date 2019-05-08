@@ -13,16 +13,15 @@ class EventsListContainer extends React.Component {
     console.log("TEST EVENT LIST CONTAINER", this.props);
     const authenticated = this.props.authenticated;
     return (
-      <>
-        {Array.isArray(this.props.events) && (
-          <EventsList events={this.props.events} />
-        )}
+      <div className="EventList">
+        <EventsList events={this.props.events} />
+
         {authenticated && (
           <Link to={`/eventsForm`}>
             <button className="AddEventButton">Add Event</button>
           </Link>
         )}
-      </>
+      </div>
     );
   }
 }

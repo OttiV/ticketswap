@@ -5,7 +5,7 @@ import { loadTicket, updateTicket } from "../../actions/tickets";
 
 class TicketDetailsContainer extends React.Component {
   componentDidMount() {
-    console.log("TICKET DETAILS", this.props.match.params);
+    console.log("TICKET DETAILS", this.props.match.params.id);
     this.props.loadTicket(this.props.match.params.id);
   }
 
@@ -59,8 +59,8 @@ class TicketDetailsContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  
-  ticket: state.ticket
+  ticket: state.ticket,
+  comment: state.comment
 });
 
 export default connect(

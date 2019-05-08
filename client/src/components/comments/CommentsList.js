@@ -14,10 +14,10 @@ export default class CommentsList extends Component {
 
   render() {
     const { comments } = this.props;
-    console.log("COMMENT LIST", this.props)
-    // const checkComments = comments.map(i =>
-    //   i.filter(t => t.ticketId === this.props.tickets.id)
-    // );
+    console.log("COMMENT LIST", this.props.ticket)
+    const checkComments = comments.map(i =>
+      i.filter(t => t.ticketId === this.props.ticket.id)
+    );
     return (
       <div className="CommentsList">
         {!comments && "Loading..."}
@@ -25,7 +25,7 @@ export default class CommentsList extends Component {
         {comments && (
             <div>
             <h2>Comments:</h2>
-              {comments.map(comment =>
+              {checkComments.map(comment =>
                 comment.map(t => this.renderComment(t))
               )}
             </div>

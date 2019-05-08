@@ -1,10 +1,40 @@
 .App {
   text-align: center;
-  font-family: "Simpsonfont"
+  padding: 15px;
+  font-weight: 300;
+  background-color: #00bfff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-h1{
-  font-family: "Simpsonfont";
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+html {
+  text-align: center;
+  color: #fff;
+  font-family: "Raleway", "Arial", "sans-serif";
+  font-weight: 400;
+  font-size: 20;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  color: #fff;
+  font-weight: 550;
+  font-size: 350%;
+  font-style: italic;
+  word-spacing: 4px;
+  letter-spacing: 1px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+a,
+a:link,
+a:visited {
+  font-size: 18px;
+  font-style: italic;
+  text-decoration: none;
+  color: #fff;
+  margin-bottom: 60px;
 }
 
 .App-logo {
@@ -32,7 +62,3 @@ h1{
   to { transform: rotate(360deg); }
 }
 
-/* @font-face {
-  font-family: "Simpsonfont";
-  src: url("./fonts/Simpsonfont\ DEMO.otf")
-} */

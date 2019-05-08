@@ -17,11 +17,8 @@ export default class TicketsList extends Component {
   };
 
   render() {
-    console.log("THIS TICKET", this.props);
-    const { tickets } = this.props;
-    const checkTickets = tickets.map(i =>
-      i.filter(t => t.eventId === this.props.event.id)
-    );
+    console.log("THIS TICKET", this.props.tickets);
+    const tickets = this.props.tickets;
     return (
       <div className="TicketsList">
         {!tickets && "Loading..."}
@@ -29,9 +26,7 @@ export default class TicketsList extends Component {
         {tickets && (
           <Link to={`/tickets/${encodeURIComponent(tickets.id)}`}>
             <div>
-              {checkTickets.map(ticket =>
-                ticket.map(t => this.renderTicket(t))
-              )}
+              {tickets.map(ticket => ticket.map(t => this.renderTicket(t)))}
             </div>
           </Link>
         )}

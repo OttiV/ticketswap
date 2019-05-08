@@ -19,6 +19,7 @@ class CommentsListContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  ticket: state.ticket,
   comments:
     state.comments === null
       ? null
