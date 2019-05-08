@@ -21,18 +21,12 @@ export default class EventsList extends Component {
 
     return (
       <div className="EventsList">
-        
-
         {!events && "Loading..."}
 
         {events && (
           <div>{events.map(event => event.map(e => this.renderEvent(e)))}</div>
         )}
 
-        <br />
-        <Link to={`/eventsForm`}>
-          <button className="AddEventButton">Add Event</button>
-        </Link>
       </div>
     );
   }

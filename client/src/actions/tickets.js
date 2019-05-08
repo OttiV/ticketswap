@@ -11,13 +11,12 @@ const fetchTickets = tickets => ({
 });
 
 export const loadTickets = () => dispatch => {
-  const state = getState();
   request
     .get(`${baseUrl}/tickets`)
-    .then(response =>
-      // console.log("response:", response.body),
+    .then(response =>{
+      console.log("response:", response);
       dispatch(fetchTickets(response.body))
-    )
+    })
     .catch(err => console.error(err));
 };
 
@@ -57,7 +56,6 @@ export const ticketUpdateSuccess = ticket => ({
 });
 
 export const updateTicket = (id, formValues) => dispatch => {
-  console.log("UPDATE TICKET TEST", id, formValues);
   const newTicket = formValues;
   newTicket.id = id;
 

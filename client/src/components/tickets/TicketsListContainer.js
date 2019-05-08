@@ -7,8 +7,9 @@ class TicketsListContainer extends React.Component {
   componentDidMount() {
     this.props.loadTickets();
   }
-
+  
   render() {
+    console.log("TICKETS LIST CONTAINER", this.props);
     return (
       <>
         {Array.isArray(this.props.tickets) && (

@@ -3,12 +3,13 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import LoginPage from "./components/login/LoginPage";
 import SignupPage from "./components/signup/SignupPage";
 import EventsListContainer from "./components/events/EventsListContainer";
-import EventDetailsContainer from "./components/events/EventDetailsContainer";
-import EventFormContainer from "./components/events/EventFormContainer"
+import TicketsListContainer from "./components/tickets/TicketsListContainer";
+import EventFormContainer from "./components/events/EventFormContainer";
 import GamesList from "./components/games/GamesList";
 import LogoutPage from "./components/logout/LogoutPage";
 import "./App.css";
 import TopBar from "./components/layout/TopBar";
+import EventDetailsContainer from "./components/events/EventDetailsContainer";
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
             <Route exact path="/eventsForm" component={EventFormContainer} />
             <Route exact path="/games" component={GamesList} />
             <Route exact path="/events/:id" component={EventDetailsContainer} />
+            <Route exact path="/tickets" component={TicketsListContainer} />
             <Route exact path="/" render={() => <Redirect to="/events" />} />
           </main>
         </div>

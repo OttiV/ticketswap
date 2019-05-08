@@ -1,7 +1,7 @@
 import { FETCH_TICKETS, TICKET_UPDATE_SUCCESS, TICKET_CREATE_SUCCESS } from "../actions/tickets";
 
 export default (state = [], action = []) => {
-  console.log("ACTIONS:", action);
+  console.log("TICKET ACTIONS:", action);
   switch (action.type) {
     case FETCH_TICKETS:
       return action.tickets;

@@ -3,7 +3,6 @@ import { baseUrl } from "../constants";
 export const FETCH_EVENTS = "FETCH_EVENTS";
 export const EVENT_CREATE_SUCCESS = "EVENT_CREATE_SUCCESS";
 export const EVENT_FETCHED = "EVENT_FETCHED";
-// export const EVENT_DELETE_SUCCESS = "EVENT_DELETE_SUCCESS";
 export const EVENT_UPDATE_SUCCESS = "EVENT_UPDATE_SUCCESS";
 
 const fetchEvents = events => ({
@@ -18,14 +17,7 @@ export const loadEvents = () => dispatch => {
       console.log("response:", response);
       dispatch(fetchEvents(response.body));
     })
-    .catch(err => console.error(err));
-
-  // request(`${baseUrl}/events`)
-  //   .then(response => {
-  //     console.log("RESPONSE:", response);
-  //     dispatch(eventsFetched(response.body.events));
-  //   })
-  //   .catch(console.error);
+    .catch(err => console.error(err));  
 };
 
 export const eventFetched = event => ({
