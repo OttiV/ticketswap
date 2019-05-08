@@ -11,15 +11,13 @@ const fetchEvents = events => ({
   events
 });
 
-export const loadEvents = () => (dispatch, getState) => {
-  console.log("test");
-  const state = getState();
+export const loadEvents = () => dispatch => {
   request
     .get(`${baseUrl}/events`)
-    .then(response =>
-      // console.log("response:", response.body),
-      dispatch(fetchEvents(response.body))
-    )
+    .then(response => {
+      console.log("response:", response);
+      dispatch(fetchEvents(response.body));
+    })
     .catch(err => console.error(err));
 
   // request(`${baseUrl}/events`)

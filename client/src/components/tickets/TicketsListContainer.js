@@ -1,27 +1,29 @@
 import React from "react";
-import { loadTickets } from "../actions/tickets";
+import { loadTickets } from "../../actions/tickets";
 import { connect } from "react-redux";
 import TicketsList from "./TicketsList";
 
-
 class TicketsListContainer extends React.Component {
   componentDidMount() {
-    this.props.loadTickets(this.props.tickets);
+    this.props.loadTickets();
   }
-  
+
   render() {
-    console.log("TEST TICKET LIST CONTAINER",this.props)
     return (
       <>
-        {Array.isArray(this.props.tickets) && <TicketsList tickets={this.props.tickets} />}
-        {console.log("SHOW THE PROPSSS", this.props)}
+        {Array.isArray(this.props.tickets) && (
+          <TicketsList tickets={this.props.tickets} />
+        )}
       </>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  tickets: state.tickets 
+  tickets:
+    state.tickets === null
+      ? null
+      : Object.values(state.tickets).sort((a, b) => b.id - a.id)
 });
 
 export default connect(

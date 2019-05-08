@@ -10,11 +10,10 @@ const fetchTickets = tickets => ({
   tickets
 });
 
-export const loadTickets = () => (dispatch, getState) => {
-  console.log("test");
+export const loadTickets = () => dispatch => {
   const state = getState();
   request
-    .get(`${baseUrl}/events/${id}/tickets`)
+    .get(`${baseUrl}/tickets`)
     .then(response =>
       // console.log("response:", response.body),
       dispatch(fetchTickets(response.body))
@@ -29,7 +28,7 @@ export const ticketFetched = ticket => ({
 
 export const loadTicket = id => dispatch => {
   request
-    .get(`${baseUrl}/events/${id}/tickets/${id}`)
+    .get(`${baseUrl}/tickets/${id}`)
     .then(response => {
       console.log(response.body);
       dispatch(ticketFetched(response.body));
@@ -44,7 +43,7 @@ export const ticketCreateSuccess = ticket => ({
 
 export const createTicket = data => dispatch => {
   request
-    .post(`${baseUrl}/events/${id}/tickets`)
+    .post(`${baseUrl}/tickets`)
     .send(data)
     .then(response => {
       dispatch(ticketCreateSuccess(response.body));
@@ -63,7 +62,7 @@ export const updateTicket = (id, formValues) => dispatch => {
   newTicket.id = id;
 
   request
-    .put(`${baseUrl}/events/${id}/tickets/${id}`)
+    .put(`${baseUrl}/tickets/${id}`)
     .send(newTicket)
     .then(() => {
       dispatch(ticketUpdateSuccess(newTicket));

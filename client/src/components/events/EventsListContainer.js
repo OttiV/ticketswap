@@ -1,11 +1,17 @@
 import React from "react";
 import { loadEvents } from "../../actions/events";
 import { connect } from "react-redux";
+// import {getUsers} from '../../actions/users'
 import EventsList from "./EventsList";
+// import {Redirect} from 'react-router-dom'
 
 class EventsListContainer extends React.Component {
   componentDidMount() {
-    this.props.loadEvents(this.props.events);
+    // if (this.props.authenticated) {
+    // if (this.props.events === null)
+    this.props.loadEvents();
+    //   if (this.props.users === null) this.props.getUsers()
+    // }
   }
 
   render() {
@@ -22,10 +28,18 @@ class EventsListContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  events: state.events
+  authenticated: state.currentUser !== null,
+  users: state.users === null ? null : state.users,
+  events:
+    state.events === null
+      ? null
+      : Object.values(state.events).sort((a, b) => b.id - a.id)
 });
 
 export default connect(
   mapStateToProps,
-  { loadEvents }
+  {
+    loadEvents
+    // , getUsers, createEvent
+  }
 )(EventsListContainer);

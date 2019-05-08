@@ -5,25 +5,24 @@ import { Link } from "react-router-dom";
 export default class TicketsList extends Component {
   renderTicket = (ticket)  => {
     return (
-      <li className="Tickets" key={ticket.id}>
-        <Link to={`/tickets/${encodeURIComponent(ticket.id)}`}>
+      <div className="Tickets" key={ticket.id}>
+        {/* <Link to={`/tickets/${encodeURIComponent(ticket.id)}`}> */}
           {ticket.name} <br />
           <img className="images" src={ticket.picture} alt={ticket.description} />
-        </Link>
-      </li>
+        {/* </Link> */}
+      </div>
     );
   }
 
   render() {
     const { tickets } = this.props;
-    console.log("TEST PROPS TICKETLIST", tickets)
 
     return (
       <div className="TicketsList">
 
         {!tickets && "Loading..."}
 
-        {tickets && <ul>{tickets.map(this.renderTicket)}</ul>}
+        {tickets && <ul>{tickets.map(ticket => ticket.map(t =>this.renderTicket()))}</ul>}
       </div>
     );
   }

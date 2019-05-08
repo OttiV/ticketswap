@@ -2,20 +2,19 @@
 // import User from "./users/entity";
 
 // if (user.tickets.length <= 1) {
-//   const risk = 10;
-//   return risk;
+//   const ticketQuantityRisk = 10;
+//   return ticketQuantityRisk;
 // }
 
 // if (ticket.comments.length > 3){
-//     const addrisk = 5
-//     return addrisk
+//     const commentRisk = 5
+//     return commentRisk
 // }
 
 // ticketTotalPrice = tickets.reduce((totalSoFar, currentTicket) => {
 //     return totalSoFar + parseFloat(currentTicket.price)
 // }, 0)
 // // console.log(ticketTotalPrice)
-
 // ticketsAveragePrice= (ticketTotalPrice / tickets.length)
 // if(ticket.price < ticketsAveragePrice) {
 // calculatePercentage(price, avPrice){
@@ -23,8 +22,8 @@
 // const priceDiffPercentage= (priceDiff / 100) * avPrice
 // return priceDiffPercentage
 // }
-// addRisk= priceDiffPercentage
-// return addRisk
+// priceLessRisk= priceDiffPercentage
+// return priceLess
 // }
 // if(ticket.price > ticketsAveragePrice) {
 // calculatePercentage(price, avPrice){
@@ -32,6 +31,6 @@
 // const priceAvDiffPercentage= (priceAvDiff / 100) * price
 // return priceAvDiffPercentage
 // }
-// addRisk= priceAvDiffPercentage
-// return addRisk
+// priceMoreRisk= priceAvDiffPercentage
+// return priceMoreRisk
 // }

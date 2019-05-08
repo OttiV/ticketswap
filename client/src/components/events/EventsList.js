@@ -3,36 +3,36 @@ import { Link } from "react-router-dom";
 import "./EventsList.css";
 
 export default class EventsList extends Component {
-  renderEvent = (event)  => {
+  renderEvent = event => {
     return (
-      <li className="Events" key={event.id}>
+      <div className="Events" key={event.id}>
         <Link to={`/events/${encodeURIComponent(event.id)}`}>
           {event.name} <br />
           <img className="images" src={event.picture} alt={event.description} />
         </Link>
-      </li>
+      </div>
     );
-  }
+  };
 
   render() {
     const { events } = this.props;
-    console.log("TEST PROPS EVENTLIST", events)
+    console.log("TEST PROPS EVENTLIST", events);
+    console.log(this.props);
 
     return (
       <div className="EventsList">
-        {/* <h1 className="Ticketswap">Ticketswap</h1> */}
+        
 
         {!events && "Loading..."}
 
-        {events && <ul>{events.map(this.renderEvent)}</ul>}
+        {events && (
+          <div>{events.map(event => event.map(e => this.renderEvent(e)))}</div>
+        )}
 
-        <br/>
+        <br />
         <Link to={`/eventsForm`}>
-          <button className="AddEventButton">
-            Add Event
-          </button>
+          <button className="AddEventButton">Add Event</button>
         </Link>
-          
       </div>
     );
   }

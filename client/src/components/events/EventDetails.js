@@ -14,6 +14,7 @@ export default function EventDetails(props) {
           <p>{props.event.startDate} </p>
           <p>{props.event.endDate} </p>
           <img className="images" src={props.event.picture} alt={props.event.description} />
+          <p>{props.event.tickets}</p>
           <br/>
           <button className="EventDetailsButtons" onClick={props.onEdit}>
             Edit

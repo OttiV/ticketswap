@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import EventDetails from "./EventDetails";
 import { loadEvent, updateEvent } from "../../actions/events";
+import TicketsListContainer from "../tickets/TicketsListContainer";
 
 class EventDetailsContainer extends React.Component {
   componentDidMount() {
@@ -61,6 +62,7 @@ class EventDetailsContainer extends React.Component {
           onSubmit={this.onSubmit}
           formValues={this.state.formValues}
         />
+        <TicketsListContainer tickets={this.props.tickets}/>
       </div>
     );
   }
