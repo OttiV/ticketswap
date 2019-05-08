@@ -5,6 +5,7 @@ import { loadTicket, updateTicket } from "../../actions/tickets";
 
 class TicketDetailsContainer extends React.Component {
   componentDidMount() {
+    console.log("TICKET DETAILS", this.props.match.params);
     this.props.loadTicket(this.props.match.params.id);
   }
 
@@ -15,9 +16,9 @@ class TicketDetailsContainer extends React.Component {
     this.setState({
       editMode: true,
       formValues: {
-        picture: this.props.event.picture,
-        description: this.props.event.description,
-        price: this.props.event.price
+        picture: this.props.ticket.picture,
+        description: this.props.ticket.description,
+        price: this.props.ticket.price
       }
     });
   };
@@ -37,14 +38,14 @@ class TicketDetailsContainer extends React.Component {
       editMode: false
     });
     console.log("this.state test", this.state);
-    console.log("HIERRRRR", this.props);
     this.props.updateTicket(this.props.ticket.id, this.state.formValues);
   };
   render() {
+    
     return (
       <div>
         <TicketDetails
-          onDelete={this.onDelete}
+        
           onEdit={this.onEdit}
           editMode={this.state.editMode}
           ticket={this.props.ticket}
@@ -58,6 +59,7 @@ class TicketDetailsContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  
   ticket: state.ticket
 });
 

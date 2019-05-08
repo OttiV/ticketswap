@@ -5,12 +5,12 @@ export default class EventForm extends React.Component {
   render() {
     return (
       <form className={"EventForm"} onSubmit={this.props.onSubmit}>
-        <label htmlFor="title">Title:</label>
+        <label htmlFor="name">Title:</label>
         <br />
         <input
-          name="title"
+          name="name"
           value={this.props.name}
-          onChange={this.props.onChange}
+          // onChange={this.props.onChange}
           className={"EventForm_input"}
         />
         <br />
@@ -21,7 +21,7 @@ export default class EventForm extends React.Component {
         <input
           name="description"
           value={this.props.description}
-          onChange={this.props.onChange}
+          // onChange={this.props.onChange}
           className={"EventForm_textarea"}
         />
         <br />
@@ -30,7 +30,7 @@ export default class EventForm extends React.Component {
         <input
           name="start_date"
           value={this.props.startDate}
-          onChange={this.props.onChange}
+          // onChange={this.props.onChange}
           className={"EventForm_input"}
         />
         <br />
@@ -39,7 +39,7 @@ export default class EventForm extends React.Component {
         <input
           name="end_date"
           value={this.props.endDate}
-          onChange={this.props.onChange}
+          // onChange={this.props.onChange}
           className={"EventForm_input"}
         />
         <br />
@@ -48,7 +48,7 @@ export default class EventForm extends React.Component {
         <input
           name="picture"
           value={this.props.picture}
-          onChange={this.props.onChange}
+          // onChange={this.props.onChange}
           className={"EventForm_input"}
         />
         <br />

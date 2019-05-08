@@ -4,7 +4,6 @@ import EventDetails from "./EventDetails";
 import { loadEvent } from "../../actions/events";
 // import { loadTickets } from "../../actions/tickets";
 
-
 class EventDetailsContainer extends React.Component {
   componentDidMount() {
     console.log("PROPS EVENT DET CONT", this.props.match.params.id);
@@ -16,7 +15,6 @@ class EventDetailsContainer extends React.Component {
     return (
       <div>
         <EventDetails event={this.props.event} />
-        
       </div>
     );
   }
@@ -24,12 +22,13 @@ class EventDetailsContainer extends React.Component {
 
 const mapStateToProps = state => ({
   event: state.event,
-  // ticket: state.ticket
+  ticket: state.ticket
 });
 
 export default connect(
   mapStateToProps,
-  { loadEvent
-    // , loadTickets 
+  {
+    loadEvent
+    // , loadTickets
   }
 )(EventDetailsContainer);

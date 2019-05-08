@@ -13,7 +13,7 @@ class TicketsListContainer extends React.Component {
     return (
       <>
         {Array.isArray(this.props.tickets) && (
-          <TicketsList tickets={this.props.tickets} />
+          <TicketsList event={this.props.event} tickets={this.props.tickets} />
         )}
       </>
     );

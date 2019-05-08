@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "../events/EventDetails.css";
 
 export default function TicketDetails(props) {
-  console.log("PROPSSSS", props.ticket);
   return (
     <div className="EventDetailsContainer">
       {props.ticket && !props.editMode && (
@@ -14,19 +13,20 @@ export default function TicketDetails(props) {
             src={props.ticket.picture}
             alt={props.ticket.description}
           />
-          <p>{props.event.description} </p>
-          <p>{props.event.price} </p>
+          <p>{props.ticket.description} </p>
+          <p>{props.ticket.price} </p>
           <button className="EventDetailsButtons" onClick={props.onEdit}>
             Edit
           </button>
         </div>
       )}
-      {props.editMode && (
+      {props.editMode &&  props.authenticated && (
         <div className="EventForm">
           <TicketForm
             values={props.formValues}
             onChange={props.onChange}
             onSubmit={props.onSubmit}
+            ticket={props.ticket}
           />
         </div>
       )}

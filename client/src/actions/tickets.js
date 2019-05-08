@@ -1,5 +1,7 @@
 import request from "superagent";
 import { baseUrl } from "../constants";
+import { isExpired } from "../jwt";
+import { logout } from "./users";
 export const FETCH_TICKETS = "FETCH_TICKETS";
 export const TICKET_CREATE_SUCCESS = "TICKET_CREATE_SUCCESS";
 export const TICKET_FETCHED = "TICKET_FETCHED";
@@ -55,12 +57,17 @@ export const ticketUpdateSuccess = ticket => ({
   ticket
 });
 
-export const updateTicket = (id, formValues) => dispatch => {
+export const updateTicket = (id, formValues) => (dispatch, getState) => {
+  const state = getState();
+  const jwt = state.currentUser.jwt;
+
+  // if (isExpired(jwt)) return dispatch(logout());
   const newTicket = formValues;
   newTicket.id = id;
 
   request
     .put(`${baseUrl}/tickets/${id}`)
+    .set("Authorization", `Bearer ${jwt}`)
     .send(newTicket)
     .then(() => {
       dispatch(ticketUpdateSuccess(newTicket));

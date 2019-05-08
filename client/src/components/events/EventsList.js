@@ -16,17 +16,16 @@ export default class EventsList extends Component {
 
   render() {
     const { events } = this.props;
-    console.log("TEST PROPS EVENTLIST", events);
-    console.log(this.props);
 
     return (
       <div className="EventsList">
         {!events && "Loading..."}
 
         {events && (
-          <div>{events.map(event => event.map(e => this.renderEvent(e)))}</div>
+          <div>
+            {events.map(event => event.map(e => this.renderEvent(e)))}
+          </div>
         )}
-
       </div>
     );
   }

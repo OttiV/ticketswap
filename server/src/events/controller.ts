@@ -20,8 +20,8 @@ export default class EventController {
   @HttpCode(201)
   createEvent(@Body() event: Event) {
       io.emit("action", {
-        type: "ADD_EVENT",
-        payload: event
+        type: "EVENT_CREATE_SUCCESS",
+        event
       });
 
     return event.save();

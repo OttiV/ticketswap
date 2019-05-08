@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 // import "./TicketsList.css";
 
 export default class TicketsList extends Component {
@@ -18,15 +19,21 @@ export default class TicketsList extends Component {
   render() {
     console.log("THIS TICKET", this.props);
     const { tickets } = this.props;
-
+    const checkTickets = tickets.map(i =>
+      i.filter(t => t.eventId === this.props.event.id)
+    );
     return (
       <div className="TicketsList">
         {!tickets && "Loading..."}
 
         {tickets && (
-          <ul>
-            {tickets.map(ticket => ticket.map(t => this.renderTicket(t)))}
-          </ul>
+          <Link to={`/tickets/${encodeURIComponent(tickets.id)}`}>
+            <div>
+              {checkTickets.map(ticket =>
+                ticket.map(t => this.renderTicket(t))
+              )}
+            </div>
+          </Link>
         )}
       </div>
     );

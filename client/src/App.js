@@ -7,9 +7,10 @@ import TicketsListContainer from "./components/tickets/TicketsListContainer";
 import EventFormContainer from "./components/events/EventFormContainer";
 import GamesList from "./components/games/GamesList";
 import LogoutPage from "./components/logout/LogoutPage";
+import EventDetailsContainer from "./components/events/EventDetailsContainer";
+import TicketDetailsContainer from "./components/tickets/TicketDetailsContainer";
 import "./App.css";
 import TopBar from "./components/layout/TopBar";
-import EventDetailsContainer from "./components/events/EventDetailsContainer";
 
 class App extends Component {
   render() {
@@ -28,6 +29,7 @@ class App extends Component {
             <Route exact path="/games" component={GamesList} />
             <Route exact path="/events/:id" component={EventDetailsContainer} />
             <Route exact path="/tickets" component={TicketsListContainer} />
+            <Route exact path="/tickets/:id" component={TicketDetailsContainer} />
             <Route exact path="/" render={() => <Redirect to="/events" />} />
           </main>
         </div>
