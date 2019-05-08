@@ -11,7 +11,7 @@ class EventsListContainer extends React.Component {
 
   render() {
     console.log("TEST EVENT LIST CONTAINER", this.props);
-    const authenticated = this.props.authenticated;
+    const {users, authenticated} = this.props
     return (
       <div className="EventList">
         <EventsList events={this.props.events} />

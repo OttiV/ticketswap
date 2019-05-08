@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createEvent } from "../../actions/events";
-import { Link } from "react-router-dom";
 import EventForm from "./EventForm";
 
 class EventFormContainer extends React.Component {
@@ -36,12 +35,9 @@ class EventFormContainer extends React.Component {
       <div>
       <EventForm
         onSubmit={this.onSubmit}
-        // onChange={this.onChange}
+        onChange={this.onChange}
         values={this.state}
       />
-      <Link to="/">
-        <button className="EventDetailsButtons">Home</button>
-      </Link>
       </div>
     );
   }

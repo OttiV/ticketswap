@@ -19,26 +19,28 @@ export default class SignupForm extends PureComponent {
 
 	render() {
 		return (
-      <div className="signup-form">
-  			<form onSubmit={this.handleSubmit}>
+  
+  			<form className="signup-form" onSubmit={this.handleSubmit}>
   				<label>
             Email
-            <input type="email" name="email" value={
+  					<br/>
+            <input className="input" type="email" name="email" value={
   						this.state.email || ''
   					} onChange={ this.handleChange } />
           </label>
-  					
   				<label>
             Password
-  					<input type="password" name="password" value={
-  						this.state.password || ''
+						<br/>
+  					<input className="input" type="password" name="password" value={
+							this.state.password || ''
   					} onChange={ this.handleChange } />
   				</label>
 
   				<label>
             Confirm password
-  					<input type="password" name="confirmPassword" value={
-  						this.state.confirmPassword || ''
+						<br/>
+  					<input className="input"  type="password" name="confirmPassword" value={
+							this.state.confirmPassword || ''
   					} onChange={ this.handleChange } />
   				</label>
 
@@ -49,9 +51,9 @@ export default class SignupForm extends PureComponent {
   					<p style={{color:'red'}}>The passwords do not match!</p>
   				}
 
-  				<button type="submit">Sign up</button>
+  				<button className="submit" type="submit">Sign up</button>
   			</form>
-      </div>
+      
 		)
 	}
 }

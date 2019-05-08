@@ -16,8 +16,16 @@ const TopBar = (props) => {
   return (
     <AppBar className="AppBar" position="absolute" style={{zIndex:10}}>
       <Toolbar className="Toolbar" >
+        {
+          /events$/.test(location.pathname) &&
+          <Button color="inherit" onClick={() => history.push('/login')}>Login</Button>
+        }
+        {
+          /events$/.test(location.pathname) &&
+          <Button color="inherit" onClick={() => history.push('/signup')}>Sign up</Button>
+        }
         <Typography className="Typography" variant="title" color="inherit" style={{flex: 1}}>
-          Ticketswap
+          <div className="h1"> Ticketswap </div>
         </Typography>
         {
           user &&
@@ -25,19 +33,11 @@ const TopBar = (props) => {
         }
 
         {
-          location.pathname.indexOf('signup') > 0 &&
-          <Button color="inherit" onClick={() => history.push('/login')}>Login</Button>
+          location.pathname.indexOf('events/') > 0 &&
+          <Button color="inherit" onClick={() => history.push('/events')}>All Events</Button>
         }
         {
-          location.pathname.indexOf('login') > 0 &&
-          <Button color="inherit" onClick={() => history.push('/signup')}>Sign up</Button>
-        }
-        {
-          location.pathname.indexOf('games/') > 0 &&
-          <Button color="inherit" onClick={() => history.push('/games')}>All Games</Button>
-        }
-        {
-          /games$/.test(location.pathname) &&
+          /events$/.test(location.pathname) &&
           <Button color="inherit" onClick={() => history.push('/logout')}>Log out</Button>
         }
       </Toolbar>

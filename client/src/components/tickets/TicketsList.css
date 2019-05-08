@@ -51,7 +51,7 @@
 }
 .AddEventButton:hover,
 .AddEventButton:active {
-  background-color: #fd8f2e;
-  border: 1px solid #fd8f2e;
+  background-color: rgb(255, 204, 0);
+  border: 1px solid rgb(255, 204, 0);
   color: #fff;
 }

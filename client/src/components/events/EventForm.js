@@ -1,16 +1,18 @@
 import React from "react";
 import "./EventForm.css";
+import { Link } from "react-router-dom";
 
 export default class EventForm extends React.Component {
   render() {
     return (
-      <form className={"EventForm"} onSubmit={this.props.onSubmit}>
+      <div className={"EventForm"}>
+      <form  onSubmit={this.props.onSubmit}>
         <label htmlFor="name">Title:</label>
         <br />
         <input
           name="name"
           value={this.props.name}
-          // onChange={this.props.onChange}
+          onChange={this.props.onChange}
           className={"EventForm_input"}
         />
         <br />
@@ -21,7 +23,7 @@ export default class EventForm extends React.Component {
         <input
           name="description"
           value={this.props.description}
-          // onChange={this.props.onChange}
+          onChange={this.props.onChange}
           className={"EventForm_textarea"}
         />
         <br />
@@ -30,7 +32,7 @@ export default class EventForm extends React.Component {
         <input
           name="start_date"
           value={this.props.startDate}
-          // onChange={this.props.onChange}
+          onChange={this.props.onChange}
           className={"EventForm_input"}
         />
         <br />
@@ -39,7 +41,7 @@ export default class EventForm extends React.Component {
         <input
           name="end_date"
           value={this.props.endDate}
-          // onChange={this.props.onChange}
+          onChange={this.props.onChange}
           className={"EventForm_input"}
         />
         <br />
@@ -48,7 +50,7 @@ export default class EventForm extends React.Component {
         <input
           name="picture"
           value={this.props.picture}
-          // onChange={this.props.onChange}
+          onChange={this.props.onChange}
           className={"EventForm_input"}
         />
         <br />
@@ -60,6 +62,10 @@ export default class EventForm extends React.Component {
           Add
         </button>
       </form>
+      <Link to="/">
+      <button className="EventDetailsButtons">Home</button>
+    </Link>
+    </div>
     );
   }
 }

@@ -1,6 +1,4 @@
 import request from "superagent";
-// import { isExpired } from "../jwt";
-// import { logout } from "./users";
 import { baseUrl } from "../constants";
 export const FETCH_EVENTS = "FETCH_EVENTS";
 export const EVENT_CREATE_SUCCESS = "EVENT_CREATE_SUCCESS";
@@ -19,7 +17,7 @@ export const loadEvents = () => dispatch => {
       console.log("response:", response);
       dispatch(fetchEvents(response.body));
     })
-    .catch(err => console.error(err));  
+    .catch(err => console.error(err));
 };
 
 export const eventFetched = event => ({
@@ -46,14 +44,11 @@ export const createEvent = data => (dispatch, getState) => {
   const state = getState();
   const jwt = state.currentUser.jwt;
 
-  // if (isExpired(jwt)) return dispatch(logout());
-
   request
     .post(`${baseUrl}/events`)
     .set("Authorization", `Bearer ${jwt}`)
     .send(data)
     .then(response => {
-      console.log("RESPONSE CREATE EVENT", response)
       dispatch(eventCreateSuccess(response.body));
     })
     .catch(console.error);

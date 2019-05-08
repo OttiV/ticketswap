@@ -1,4 +1,8 @@
-import { FETCH_EVENTS, EVENT_UPDATE_SUCCESS, EVENT_CREATE_SUCCESS } from "../actions/events";
+import {
+  FETCH_EVENTS,
+  EVENT_UPDATE_SUCCESS,
+  EVENT_CREATE_SUCCESS
+} from "../actions/events";
 
 export default (state = [], action = []) => {
   switch (action.type) {

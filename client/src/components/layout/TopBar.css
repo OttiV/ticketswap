@@ -4,3 +4,11 @@
   background-color: rgb(255, 204, 0);
   margin:0;
 }
+
+.h1 {
+  font-size: 2.5em;
+  font-weight: 350;
+}
+.Appbar{
+  margin: 0;
+}
