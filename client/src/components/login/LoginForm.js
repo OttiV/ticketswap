@@ -23,19 +23,21 @@ export default class LoginForm extends PureComponent {
   			<form onSubmit={this.handleSubmit}>
   				<label>
             Email
-            <input type="email" name="email" value={
-  						this.state.email || ''
+					
+            <input className="input" type="email" name="email" value={
+							this.state.email || ''
   					} onChange={ this.handleChange } />
           </label>
 
   				<label>
             Password
-            <input type="password" name="password" value={
+						
+            <input className="input" type="password" name="password" value={
   						this.state.password || ''
   					} onChange={ this.handleChange } />
           </label>
 
-  				<button type="submit">Login</button>
+  				<button className="submit" type="submit">Login</button>
   			</form>
 		  </div>)
 	}

@@ -1,22 +1,6 @@
-import {
-  JsonController,
-  Authorized,
-  CurrentUser,
-  Post,
-  Param,
-  BadRequestError,
-  HttpCode,
-  NotFoundError,
-  ForbiddenError,
-  Get,
-  Put,
-  Body,
-  Patch
-} from "routing-controllers";
-import User from "../users/entity";
+import { JsonController, Authorized, Post, Param, HttpCode, NotFoundError, Get, Put, Body } from "routing-controllers";
 import { Event } from "./entities";
 import { io } from "../index";
-// import { IndexMetadata } from 'typeorm/metadata/IndexMetadata';
 
 @JsonController()
 export default class EventController {
@@ -25,7 +9,8 @@ export default class EventController {
     const events = await Event.find();
     return { events };
   }
-  @Get("/events/:id([0-9])")
+
+  @Get("/events/:id([0-9]+)")
   getEvent(@Param("id") id: number) {
     return Event.findOneById(id);
   }
@@ -33,20 +18,15 @@ export default class EventController {
   @Authorized()
   @Post("/events")
   @HttpCode(201)
-  async createEvent(@CurrentUser() user: User, @Param("id") eventId: number) {
-    const entity = await Event.create().save();
+  createEvent(@Body() event: Event) {
+      io.emit("action", {
+        type: "EVENT_CREATE_SUCCESS",
+        event
+      });
 
-    const event = await Event.findOneById(entity.id);
-
-    io.emit("action", {
-      type: "ADD_EVENT",
-      payload: event
-    });
-console.log("CREATE EVENT", event)
     return event.save();
   }
 
-  //Put request functional
   @Authorized()
   @Put("/events/:id")
   async updateEvent(@Param("id") id: number, @Body() update: Partial<Event>) {

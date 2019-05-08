@@ -1,21 +1,11 @@
 import React from "react";
-import "./EventForm.css";
-import { Link } from "react-router-dom";
+import "../events/EventForm.css";
 
-export default class EventForm extends React.Component {
+export default class TicketForm extends React.Component {
   render() {
     return (
-      <div className={"EventForm"}>
-      <form  onSubmit={this.props.onSubmit}>
-        <label htmlFor="name">Title:</label>
-        <br />
-        <input
-          name="name"
-          value={this.props.name}
-          onChange={this.props.onChange}
-          className={"EventForm_input"}
-        />
-        <br />
+      <form className={"EventForm"} onSubmit={this.props.onSubmit}>
+
         <label className="DescriptionLabel" htmlFor="description">
           Description:
         </label>
@@ -27,20 +17,11 @@ export default class EventForm extends React.Component {
           className={"EventForm_textarea"}
         />
         <br />
-        <label htmlFor="start_date">Start Date:</label>
+        <label htmlFor="sprice">Price:</label>
         <br />
         <input
-          name="start_date"
-          value={this.props.startDate}
-          onChange={this.props.onChange}
-          className={"EventForm_input"}
-        />
-        <br />
-        <label htmlFor="end_date">End date:</label>
-        <br />
-        <input
-          name="end_date"
-          value={this.props.endDate}
+          name="sprice"
+          value={this.props.price}
           onChange={this.props.onChange}
           className={"EventForm_input"}
         />
@@ -59,13 +40,9 @@ export default class EventForm extends React.Component {
           className={"EventForm_submitButton"}
           onSubmit={this.props.onSubmit}
         >
-          Add
+          Submit
         </button>
       </form>
-      <Link to="/">
-      <button className="EventDetailsButtons">Home</button>
-    </Link>
-    </div>
     );
   }
 }

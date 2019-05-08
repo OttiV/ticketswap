@@ -7,21 +7,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0;
 }
-.Events {
+.Tickets {
   border: solid #fff 0.2rem;
   width: 350px;
   height: 350px;
   padding: o.4rem;
-  margin: 0.8rem 2.8rem;
+  margin: 0.4rem 0.6rem;
   float: left;
   border-radius: 2rem;
-  
 }
 
 .EventName{
-  font-size: 1.5em;
+  font-size: 1.7em;
   font-weight: 300;
 }
 

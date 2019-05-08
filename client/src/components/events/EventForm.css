@@ -1,3 +1,9 @@
+.EventForm {
+  text-align: center;
+  padding: 15px;
+  font-weight: 300;
+  background-color: #00bfff;
+}
 .EventForm_input {
   width: 200px;
   height: 30px;
@@ -23,12 +29,11 @@
   transition: background-color 0.2s, border 0.2s, color 0.2s;
   border: 1px solid #555;
   color: #555;
-  
 }
 
 .EventForm_submitButton:hover,
 .EventForm_submitButton:active {
-  background-color: #fd8f2e;
-  border: 1px solid #fd8f2e;
+  background-color: rgb(255, 204, 0);
+  border: 1px solid rgb(255, 204, 0);
   color: #fff;
 }

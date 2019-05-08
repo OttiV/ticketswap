@@ -1,13 +1,7 @@
-import { Ticket } from '../tickets/entity';
-import {
-  BaseEntity,
-  PrimaryGeneratedColumn,
-  Column,
-  Entity,
-  OneToMany
-} from 'typeorm';
+import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, OneToMany, ManyToOne } from 'typeorm';
 import { IsString, Length, MinLength, IsUrl, IsDate } from 'class-validator';
-
+import { Ticket } from '../tickets/entity';
+import User from '../users/entity';
 
 @Entity()
 export class Event extends BaseEntity {
@@ -29,54 +23,16 @@ export class Event extends BaseEntity {
   picture: string;
 
   @IsDate()
-  @Column('date', { name: 'start_date' })
+  @Column('date')
   startDate: Date;
 
   @IsDate()
-  @Column('date', { name: 'end_date' })
+  @Column('date')
   endDate: Date;
 
   @OneToMany(_ => Ticket, ticket => ticket.event, { eager: true })
   tickets: Ticket[];
+
+  @ManyToOne(_ => User, user => user.events)
+  user: User[];
 }
-
-
-// @Entity()
-// export class Player extends BaseEntity {
-//   @PrimaryGeneratedColumn()
-//   id?: number;
-
-//   @ManyToOne(_ => User, user => user.players)
-//   user: User;
-
-//   @ManyToOne(_ => Game, game => game.players)
-//   game: Game;
-
-//   // @Column('integer', { name: 'user_id' })
-//   // userId: number;
-
-//   @ManyToMany(() => Word, { eager: true })
-//   @JoinTable()
-//   words: Word[];
-
-//   @Column('boolean', { default: false })
-//   winner: boolean;
-// }
-
-// @Entity()
-// export class Word extends BaseEntity {
-//   @PrimaryGeneratedColumn()
-//   id?: number;
-
-//   @ManyToOne(_ => Game, game => game.players)
-//   game: Game;
-
-//   @Column('integer')
-//   row: number;
-
-//   @Column('integer')
-//   column: number;
-
-//   @Column('text')
-//   text: string;
-// }

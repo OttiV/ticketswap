@@ -1,30 +1,41 @@
 import React from "react";
-import { loadEvents } from "../actions/events";
+import { loadEvents } from "../../actions/events";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import EventsList from "./EventsList";
-
 
 class EventsListContainer extends React.Component {
   componentDidMount() {
-    this.props.loadEvents(this.props.events);
+    this.props.loadEvents();
   }
 
   render() {
+    console.log("TEST EVENT LIST CONTAINER", this.props);
+    const {users, authenticated} = this.props
     return (
-      <>
-        {Array.isArray(this.props.events) && <EventsList events={this.props.events} />}
-        {console.log(this.props)}
-      </>
+      <div className="EventList">
+        <EventsList events={this.props.events} />
+
+        {authenticated && (
+          <Link to={`/eventsForm`}>
+            <button className="AddEventButton">Add Event</button>
+          </Link>
+        )}
+      </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  events: state.events
+  authenticated: state.currentUser !== null,
+  users: state.users === null ? null : state.users,
+  events:
+    state.events === null
+      ? null
+      : Object.values(state.events).sort((a, b) => b.id - a.id)
 });
 
 export default connect(
   mapStateToProps,
   { loadEvents }
 )(EventsListContainer);
-

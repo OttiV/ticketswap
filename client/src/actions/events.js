@@ -1,28 +1,23 @@
 import request from "superagent";
-
-export const EVENTS_FETCHED = "EVENTS_FETCHED";
-// export const EVENT_CREATE_SUCCESS = "EVENT_CREATE_SUCCESS";
+import { baseUrl } from "../constants";
+export const FETCH_EVENTS = "FETCH_EVENTS";
+export const EVENT_CREATE_SUCCESS = "EVENT_CREATE_SUCCESS";
 export const EVENT_FETCHED = "EVENT_FETCHED";
-// export const EVENT_DELETE_SUCCESS = "EVENT_DELETE_SUCCESS";
 export const EVENT_UPDATE_SUCCESS = "EVENT_UPDATE_SUCCESS";
 
-const baseUrl = "http://localhost:4000";
-
-const eventsFetched = events => ({
-  type: EVENTS_FETCHED,
+const fetchEvents = events => ({
+  type: FETCH_EVENTS,
   events
 });
 
-export const loadEvents = () => (dispatch, getState) => {
-  console.log("test");
-  // if (getState().events) return;
-
-  request(`${baseUrl}/events`)
+export const loadEvents = () => dispatch => {
+  request
+    .get(`${baseUrl}/events`)
     .then(response => {
-      console.log("RESPONSE:", response);
-      dispatch(eventsFetched(response.body.events));
+      console.log("response:", response);
+      dispatch(fetchEvents(response.body));
     })
-    .catch(console.error);
+    .catch(err => console.error(err));
 };
 
 export const eventFetched = event => ({
@@ -39,22 +34,41 @@ export const loadEvent = id => dispatch => {
     })
     .catch(console.error);
 };
+
+export const eventCreateSuccess = event => ({
+  type: EVENT_CREATE_SUCCESS,
+  event
+});
+
+export const createEvent = data => (dispatch, getState) => {
+  const state = getState();
+  const jwt = state.currentUser.jwt;
+
+  request
+    .post(`${baseUrl}/events`)
+    .set("Authorization", `Bearer ${jwt}`)
+    .send(data)
+    .then(response => {
+      dispatch(eventCreateSuccess(response.body));
+    })
+    .catch(console.error);
+};
+
 export const eventUpdateSuccess = event => ({
   type: EVENT_UPDATE_SUCCESS,
   event
 });
 
 export const updateEvent = (id, formValues) => dispatch => {
-  console.log(id, formValues);
+  console.log("UPDATE EVENT TEST", id, formValues);
   const newEvent = formValues;
   newEvent.id = id;
 
   request
-    .put(`${baseUrl}/event/${id}`)
-    .send(newEvent) //to send the data to the DB
+    .put(`${baseUrl}/events/${id}`)
+    .send(newEvent)
     .then(() => {
       dispatch(eventUpdateSuccess(newEvent));
     })
     .catch(console.error);
 };
-

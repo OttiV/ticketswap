@@ -1,15 +1,8 @@
+import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, ManyToOne, OneToMany } from "typeorm";
+import { IsString, MinLength, IsUrl, IsNumber } from "class-validator";
 import { Comment } from "../comments/entity";
 import { Event } from "../events/entities";
-import {
-  BaseEntity,
-  PrimaryGeneratedColumn,
-  Column,
-  Entity,
-  ManyToOne,
-  OneToMany
-} from "typeorm";
-
-import { IsString, MinLength, IsUrl, IsNumber } from "class-validator";
+import User from "../users/entity";
 
 @Entity()
 export class Ticket extends BaseEntity {
@@ -32,6 +25,15 @@ export class Ticket extends BaseEntity {
   @ManyToOne(_ => Event, event => event.tickets)
   event: Event[];
 
+  @Column("integer", { name: "event_id" })
+  eventId: number;
+
   @OneToMany(_ => Comment, comment => comment.ticket, { eager: true })
   comments: Comment[];
+
+  @ManyToOne(_ => User, user => user.tickets)
+  user: User[];
+
+  @Column("integer", { name: "user_id" })
+  userId: number;
 }

@@ -1,7 +1,6 @@
 import { EVENT_FETCHED, EVENT_UPDATE_SUCCESS } from "../actions/events";
 
 export default (state = [], action = []) => {
-  console.log("ACTION:", action);
   switch (action.type) {
     case EVENT_FETCHED:
     return action.event;
