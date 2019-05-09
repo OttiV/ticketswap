@@ -13,7 +13,7 @@ const TopBar = props => {
   const { location, history, user } = props;
 
   return (
-    <AppBar className="AppBar" position="absolute" style={{ zIndex: 10 }}>
+    <AppBar className="AppBar" position="absolute" style={{ zIndex: 10, margin: 0 }}>
       <Toolbar className="Toolbar">
         {/* <Button className="Button" color="inherit" onClick={() => history.push("/login")}>
           Login
@@ -21,6 +21,9 @@ const TopBar = props => {
 
         <Typography color="inherit" onClick={() => history.push("/login")}>
           <button className="Button">Login</button>
+        </Typography>
+        <Typography color="inherit" onClick={() => history.push("/signup")}>
+          <button className="Button">Sign up</button>
         </Typography>
 
         <Typography
@@ -39,6 +42,9 @@ const TopBar = props => {
 
         <Typography color="inherit" onClick={() => history.push("/events")}>
           <button className="Button">Home</button>
+        </Typography>
+        <Typography color="inherit" onClick={() => history.push("/logout")}>
+          <button className="Button">Logout</button>
         </Typography>
       </Toolbar>
     </AppBar>

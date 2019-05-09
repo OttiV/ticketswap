@@ -1,20 +1,19 @@
 import React, { Component } from "react";
-
-
+import "./CommentForm.css";
 
 export default class CommentsList extends Component {
   renderComment = comment => {
     return (
-        <div className="Comments" key={comment.id}>
+      <div className="Comments" key={comment.id}>
         User Id: {comment.userId} <br />
-        Comment: {comment.comment} <br/>  <br/>
+        Comment: {comment.comment} <br /> <br />
       </div>
     );
   };
 
   render() {
     const { comments } = this.props;
-    console.log("COMMENT LIST", this.props.ticket)
+    console.log("COMMENT LIST", this.props.ticket);
     const checkComments = comments.map(i =>
       i.filter(t => t.ticketId === this.props.ticket.id)
     );
@@ -23,13 +22,13 @@ export default class CommentsList extends Component {
         {!comments && "Loading..."}
 
         {comments && (
-            <div>
+          <div className="Comments">
             <h2>Comments:</h2>
-              {checkComments.map(comment =>
-                comment.map(t => this.renderComment(t))
-              )}
-            </div>
-          
+
+            {checkComments.map(comment =>
+              comment.map(t => this.renderComment(t))
+            )}
+          </div>
         )}
       </div>
     );

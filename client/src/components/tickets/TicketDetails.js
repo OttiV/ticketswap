@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TicketForm from "./TicketForm";
 import CommentsListContainer from "../comments/CommentsListContainer";
+// import CommentForm from "../comments/CommentForm";
 import "../events/EventDetails.css";
 // import { Link } from "react-router-dom";
 
@@ -17,6 +18,7 @@ export default class TicketDetails extends Component {
   render() {
     // console.log("COMMENTS IN TICK DET", this.props.ticket.comments);
     // const comments = this.props.ticket.comments;
+    const {authenticated, editMode}= this.props
     return (
       <div className="EventDetailsContainer">
         {this.props.ticket && !this.props.editMode && (
@@ -41,13 +43,13 @@ export default class TicketDetails extends Component {
                 <div>
                   <h2>Comments:</h2>
 
-                  {comments.map(c => c.map(comment => this.renderComment(comment)))}
+                  {comments.map(comment => this.renderComment(comment)))}
                 </div>
               )}
             </div> */}
           </div>
         )}
-        {this.props.editMode && (
+        {editMode && (
           <div className="EventForm">
             <TicketForm
               values={this.props.formValues}
@@ -57,14 +59,14 @@ export default class TicketDetails extends Component {
             />
           </div>
         )}
-
-        {/* ADD COMMENT SECTION 
-      only if signed in
-      with textarea*/}
-
-        {/* <Link to="/">
-          <button className="EventDetailsButtons">Home</button>
-        </Link> */}
+        
+         {/* {authenticated &&(
+        <CommentForm
+          values={this.props.formValues}
+          onChange={this.props.onChange}
+          onSubmit={this.props.onSubmit}
+          comment={this.props.comment}
+        />)} */}
       </div>
     );
   }

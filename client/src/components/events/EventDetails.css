@@ -1,5 +1,6 @@
 .EventDetailsContainer {
   text-align: center;
+  margin: 0;  
   padding: 15px;
   font-weight: 300;
   background-color: #00bfff;

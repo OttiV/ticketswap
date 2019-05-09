@@ -8,12 +8,14 @@ export default class EventDetails extends Component {
     console.log("TICKETS AND EVENTS PROPS", this.props);
     return (
       <div className="Ticket" key={ticket.id}>
+      <Link to={`/tickets/${encodeURIComponent(ticket.id)}`}>
         <img className="TicketImages" src={ticket.picture} alt={ticket.description} />
         <br />
         User Id: {ticket.userId} <br />
         Description: {ticket.description}
         <br />
         Price: $ {ticket.price}
+        </Link>
       </div>
     );
   };
@@ -38,16 +40,13 @@ export default class EventDetails extends Component {
         <div>
 
         {tickets && (
-          <Link to={`/tickets/${encodeURIComponent(tickets.id)}`}>
+         
       <div className="Tickets">
               {tickets.map(ticket => this.renderTicket(ticket))}
             </div>
-          </Link>
+          
         )}
       </div>
-        {/* <Link to="/">
-        <button className="EventDetailsButtons">Home</button>
-      </Link> */}
       
       </div>
     </div>
