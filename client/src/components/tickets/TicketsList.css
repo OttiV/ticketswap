@@ -2,14 +2,13 @@
   text-align: center;
   padding: 15px;
   font-weight: 300;
-  background-color:  #00bfff;
+  background: rgb(0, 6, 26);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 .Tickets {
-  /* border: solid #fff 0.2rem; */
   width: 350px;
   height: 350px;
   padding: o.4rem;
@@ -18,7 +17,7 @@
   border-radius: 2rem;
 }
 
-.EventName{
+.EventName {
   font-size: 1.7em;
   font-weight: 300;
 }
@@ -30,31 +29,13 @@
   height: 250px;
   margin: 0 2rem;
   /* border:solid #fff 0.2rem; */
-  transition: transform .2s;
+  transition: transform 0.2s;
 }
 
 .images:hover {
   transform: scale(1.2);
 }
 
-.AddEventButton{
-  display: inline-block;
-  margin: 10px;
-  padding: 10px 27.5px;
-  font-weight: 500;
-  text-decoration: none;
-  border-radius: 200px;
-  transition: background-color 0.2s, border 0.2s, color 0.2s;
-  border: 1px solid #555;
-  color: #555;
-  
-}
-.AddEventButton:hover,
-.AddEventButton:active {
-  background-color: rgb(255, 204, 0);
-  border: 1px solid rgb(255, 204, 0);
-  color: #fff;
-}
-h2{
+h2 {
   font-weight: 350;
 }

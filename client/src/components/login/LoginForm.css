@@ -1,9 +1,9 @@
-.login-form label {
+.login-form {
   display: block;
   text-align: center;
   padding: 15px;
   font-weight: 300;
-  background-color: #00bfff;
+  background-color: rgb(0, 6, 26);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -21,15 +21,28 @@
   padding: 10px 27.5px;
   font-weight: 500;
   text-decoration: none;
+  background-color: transparent;
   border-radius: 200px;
   transition: background-color 0.2s, border 0.2s, color 0.2s;
-  border: 1px solid #555;
-  color: #555;
+  border: 1px solid #fff;
+  color: #fff;
 }
 
 .submit:hover,
 .submit:active {
-  background-color: rgb(255, 204, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(67, 94, 248, 1) 6%,
+    rgba(80, 92, 238, 1) 8%,
+    rgba(88, 91, 232, 1) 15%,
+    rgba(113, 88, 213, 1) 28%,
+    rgba(137, 85, 195, 1) 38%,
+    rgba(142, 84, 191, 1) 51%,
+    rgba(158, 82, 179, 1) 60%,
+    rgba(191, 78, 154, 1) 71%,
+    rgba(252, 70, 107, 1) 84%
+  );
   border: 1px solid rgb(255, 204, 0);
   color: #fff;
 }

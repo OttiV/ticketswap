@@ -1,7 +1,7 @@
 import React from "react";
 import { loadEvents, createEvent } from "../../actions/events";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Animated } from "react-animated-css";
 import EventsList from "./EventsList";
 
 class EventsListContainer extends React.Component {
@@ -38,6 +38,11 @@ class EventsListContainer extends React.Component {
     const { users, authenticated } = this.props;
     return (
       <div className="EventList">
+       <Animated
+              animationIn="bounceInUp"
+              animationOut="fadeOut"
+              isVisible={true}
+            >
         <EventsList
           events={this.props.events}
           onChange={this.onChange}
@@ -46,12 +51,7 @@ class EventsListContainer extends React.Component {
           editMode={this.state.editMode}
           onEdit={this.onEdit}
         />
-
-        {/* {authenticated && (
-          <Link to={`/eventsForm`}>
-            <button className="AddEventButton" onClick={props.onEdit}>Add Event</button>
-          </Link>
-        )} */}
+</Animated>
       </div>
     );
   }
