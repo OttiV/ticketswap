@@ -1,6 +1,6 @@
 import React from "react";
 import "./EventForm.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 export default class EventForm extends React.Component {
   render() {
@@ -62,9 +62,9 @@ export default class EventForm extends React.Component {
           Add
         </button>
       </form>
-      <Link to="/">
+      {/* <Link to="/">
       <button className="EventDetailsButtons">Home</button>
-    </Link>
+    </Link> */}
     </div>
     );
   }

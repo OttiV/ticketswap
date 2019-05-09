@@ -45,9 +45,9 @@ export default class EventDetails extends Component {
           </Link>
         )}
       </div>
-        <Link to="/">
+        {/* <Link to="/">
         <button className="EventDetailsButtons">Home</button>
-      </Link>
+      </Link> */}
       
       </div>
     </div>

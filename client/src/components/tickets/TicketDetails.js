@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import TicketForm from "./TicketForm";
 import CommentsListContainer from "../comments/CommentsListContainer";
-
-import { Link } from "react-router-dom";
 import "../events/EventDetails.css";
+// import { Link } from "react-router-dom";
 
 export default class TicketDetails extends Component {
   renderComment = comment => {
@@ -32,7 +31,10 @@ export default class TicketDetails extends Component {
             <button className="EventDetailsButtons" onClick={this.props.onEdit}>
               Edit
             </button>
-            <CommentsListContainer comments={this.props.comments} tickets={this.props.tickets} />
+            <CommentsListContainer
+              comments={this.props.comments}
+              tickets={this.props.tickets}
+            />
             {/* <div className="CommentsList">
               {comments < 1 && "No comments have been posted"}
               {comments && comments > 0 && (
@@ -60,11 +62,10 @@ export default class TicketDetails extends Component {
       only if signed in
       with textarea*/}
 
-        <Link to="/">
+        {/* <Link to="/">
           <button className="EventDetailsButtons">Home</button>
-        </Link>
+        </Link> */}
       </div>
     );
   }
 }
-

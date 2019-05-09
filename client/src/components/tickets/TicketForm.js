@@ -17,10 +17,10 @@ export default class TicketForm extends React.Component {
           className={"EventForm_textarea"}
         />
         <br />
-        <label htmlFor="sprice">Price:</label>
+        <label htmlFor="price">Price:</label>
         <br />
         <input
-          name="sprice"
+          name="price"
           value={this.props.price}
           onChange={this.props.onChange}
           className={"EventForm_input"}

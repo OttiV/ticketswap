@@ -6,6 +6,7 @@ import User from "./users/entity";
 import { Event } from "./events/entities";
 import { Ticket } from "./tickets/entity";
 import { Comment } from "./comments/entity";
+import { Fraudrisk } from "./fraudRisks/entity";
 
 class CustomNamingStrategy extends DefaultNamingStrategy
   implements NamingStrategyInterface {
@@ -38,7 +39,7 @@ export default () =>
     url:
       process.env.DATABASE_URL ||
       "postgres://postgres:secret@localhost:5432/postgres",
-    entities: [User, Event, Ticket, Comment],
+    entities: [User, Event, Ticket, Comment, Fraudrisk],
     synchronize: true, // careful with this in production!
     logging: true,
     namingStrategy: new CustomNamingStrategy()
