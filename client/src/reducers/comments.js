@@ -1,4 +1,4 @@
-import { FETCH_COMMENTS, COMMENT_UPDATE_SUCCESS, COMMENT_CREATE_SUCCESS } from "../actions/comments";
+import { FETCH_COMMENTS, COMMENT_CREATE_SUCCESS } from "../actions/comments";
 
 export default (state = [], action = []) => {
   switch (action.type) {
@@ -7,9 +7,6 @@ export default (state = [], action = []) => {
 
     case COMMENT_CREATE_SUCCESS:
       return [...state, action.comment];
-
-    case COMMENT_UPDATE_SUCCESS:
-      return action.comment;
 
     default:
       return state;

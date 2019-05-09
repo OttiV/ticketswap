@@ -5,21 +5,21 @@ import CommentForm from './CommentForm'
 
 class CommentFormContainer extends React.Component {
   state = {
-    content: ""
+    comment: ""
   }
 
-  onChange = (event) => {
+  onChange = comment => {
     this.setState({
-      [event.target.name]: event.target.value
+      [comment.target.name]: comment.target.value
     })
   }
 
-  onSubmit = (event) => {
-    event.preventDefault()
-    this.setState({
-        content: ""
-    })
+  onSubmit = comment => {
     this.props.createComment(this.state)
+    comment.preventDefault()
+    this.setState({
+        comment: ""
+    })
   }
 
   render() {

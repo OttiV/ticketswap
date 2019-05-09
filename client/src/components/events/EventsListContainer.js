@@ -1,5 +1,5 @@
 import React from "react";
-import { loadEvents } from "../../actions/events";
+import { loadEvents, createEvent } from "../../actions/events";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import EventsList from "./EventsList";
@@ -9,18 +9,49 @@ class EventsListContainer extends React.Component {
     this.props.loadEvents();
   }
 
+  state = { editMode: false };
+
+  onChange = event => {
+    this.setState({
+      formValues: {
+        ...this.state.formValues,
+        [event.target.name]: event.target.value
+      }
+    });
+  };
+  onEdit = () => {
+    this.setState({
+      editMode: true
+    });
+  };
+  onSubmit = event => {
+    event.preventDefault();
+    this.setState({
+      editMode: false
+    });
+    console.log("this.state test", this.state);
+    this.props.createEvent(this.state.formValues);
+  };
+
   render() {
     console.log("TEST EVENT LIST CONTAINER", this.props);
-    const {users, authenticated} = this.props
+    const { users, authenticated } = this.props;
     return (
       <div className="EventList">
-        <EventsList events={this.props.events} />
+        <EventsList
+          events={this.props.events}
+          onChange={this.onChange}
+          onSubmit={this.onSubmit}
+          formValues={this.state.formValues}
+          editMode={this.state.editMode}
+          onEdit={this.onEdit}
+        />
 
-        {authenticated && (
+        {/* {authenticated && (
           <Link to={`/eventsForm`}>
-            <button className="AddEventButton">Add Event</button>
+            <button className="AddEventButton" onClick={props.onEdit}>Add Event</button>
           </Link>
-        )}
+        )} */}
       </div>
     );
   }
@@ -37,5 +68,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { loadEvents }
+  { loadEvents, createEvent }
 )(EventsListContainer);

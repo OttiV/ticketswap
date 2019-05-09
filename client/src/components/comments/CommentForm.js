@@ -7,16 +7,14 @@ export default class CommentForm extends React.Component {
       <form className={"CommentForm"} onSubmit={this.props.onSubmit}>
       <div className="Border">
         <h2>Leave a comment:</h2>
-        <label htmlFor="name">Comment:</label>
+        <label htmlFor="comment">Comment:</label>
         <br/>
         <textarea
-          name="name"
+          name="comment"
           value={this.props.comment}
           onChange={this.props.onChange}
           className={"CommentForm__input"}
         />
-
-
         <br/>
         <button
           type="submit"
