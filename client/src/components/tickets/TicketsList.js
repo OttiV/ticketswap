@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-// import "./TicketsList.css";
+import "./TicketsList.css";
 
 export default class TicketsList extends Component {
   renderTicket = ticket => {

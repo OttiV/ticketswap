@@ -3,7 +3,7 @@ import { baseUrl } from "../constants";
 export const FETCH_COMMENTS = "FETCH_COMMENTS";
 export const COMMENT_CREATE_SUCCESS = "COMMENT_CREATE_SUCCESS";
 export const COMMENT_FETCHED = "COMMENT_FETCHED";
-export const COMMENT_UPDATE_SUCCESS = "COMMENT_UPDATE_SUCCESS";
+
 
 const fetchComments = comments => ({
   type: FETCH_COMMENTS,
@@ -57,21 +57,3 @@ export const createComment = data => (dispatch, getState) => {
     .catch(console.error);
 };
 
-export const commentUpdateSuccess = comment => ({
-  type: COMMENT_UPDATE_SUCCESS,
-  comment
-});
-
-export const updateComment = (id, formValues) => dispatch => {
-  console.log("UPDATE COMMENT TEST", id, formValues);
-  const newComment = formValues;
-  newComment.id = id;
-
-  request
-    .put(`${baseUrl}/comments/${id}`)
-    .send(newComment)
-    .then(() => {
-      dispatch(commentUpdateSuccess(newComment));
-    })
-    .catch(console.error);
-};

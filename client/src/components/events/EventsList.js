@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import EventForm from "./EventForm"
 import "./EventsList.css";
 
 export default class EventsList extends Component {
@@ -15,17 +16,31 @@ export default class EventsList extends Component {
   };
 
   render() {
-    const { events } = this.props;
+    const { events,editMode } = this.props;
 
     return (
       <div className="EventsList">
         {!events && "Loading..."}
 
-        {events && (
+        {events && !editMode && (
           <div>
             {events.map(event => event.map(e => this.renderEvent(e)))}
           </div>
-        )}
+          )}
+        <div>
+        {!editMode && (<button className="EventDetailsButtons" onClick={this.props.onEdit}>
+            Add Event
+          </button>)}
+        </div>
+       {editMode && (
+        <div className="EditForm">
+          <EventForm
+            values={this.props.formValues}
+            onChange={this.props.onChange}
+            onSubmit={this.props.onSubmit}
+          />
+        </div>
+      )}
       </div>
     );
   }
