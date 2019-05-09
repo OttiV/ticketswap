@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import TicketForm from "./TicketForm";
 import CommentsListContainer from "../comments/CommentsListContainer";
-// import CommentForm from "../comments/CommentForm";
 import "../events/EventDetails.css";
-// import { Link } from "react-router-dom";
+import "./TicketsList.css"
+
 
 export default class TicketDetails extends Component {
   renderComment = comment => {
@@ -16,13 +16,17 @@ export default class TicketDetails extends Component {
     );
   };
   render() {
+    
     // console.log("COMMENTS IN TICK DET", this.props.ticket.comments);
     // const comments = this.props.ticket.comments;
-    const {authenticated, editMode}= this.props
+    
+    const { authenticated, editMode } = this.props;
     return (
       <div className="EventDetailsContainer">
         {this.props.ticket && !this.props.editMode && (
           <div className="EventDetails">
+            <h2>Seller: User #{this.props.ticket.userId}</h2>
+           
             <img
               className="images"
               src={this.props.ticket.picture}
@@ -59,14 +63,6 @@ export default class TicketDetails extends Component {
             />
           </div>
         )}
-        
-         {/* {authenticated &&(
-        <CommentForm
-          values={this.props.formValues}
-          onChange={this.props.onChange}
-          onSubmit={this.props.onSubmit}
-          comment={this.props.comment}
-        />)} */}
       </div>
     );
   }

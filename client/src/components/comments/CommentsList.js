@@ -14,8 +14,8 @@ export default class CommentsList extends Component {
   render() {
     const { comments } = this.props;
     console.log("COMMENT LIST", this.props.ticket);
-    const checkComments = comments.map(i =>
-      i.filter(t => t.ticketId === this.props.ticket.id)
+    const checkComments = comments.map(comment =>
+      comment.filter(c => c.ticketId === this.props.ticket.id)
     );
     return (
       <div className="CommentsList">

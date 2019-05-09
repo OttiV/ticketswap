@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import TicketDetails from "./TicketDetails";
 import { loadTicket, updateTicket } from "../../actions/tickets";
 import CommentFormContainer from "../comments/CommentFormContainer";
+
+
 class TicketDetailsContainer extends React.Component {
   componentDidMount() {
     console.log("TICKET DETAILS", this.props.match.params.id);
@@ -41,7 +43,9 @@ class TicketDetailsContainer extends React.Component {
     this.props.updateTicket(this.props.ticket.id, this.state.formValues);
   };
   render() {
-    const {authenticated}= this.props
+    const {authenticated, editMode}= this.props
+    // const commentRisk = ticket.map(ticket=> ticket.filter(t=> t.comment.length> 3))
+ 
     return (
       <div>
         <TicketDetails
@@ -49,11 +53,12 @@ class TicketDetailsContainer extends React.Component {
           onEdit={this.onEdit}
           editMode={this.state.editMode}
           ticket={this.props.ticket}
+          user={this.props.user}
           onChange={this.onChange}
           onSubmit={this.onSubmit}
           formValues={this.state.formValues}
         />
-        {authenticated &&(
+        {authenticated && (
           <CommentFormContainer
           values={this.props.formValues}
           onChange={this.props.onChange}
@@ -68,6 +73,7 @@ class TicketDetailsContainer extends React.Component {
 
 const mapStateToProps = state => ({
   authenticated: state.currentUser !== null,
+  user: state.user,
   ticket: state.ticket,
   comment: state.comment
 });

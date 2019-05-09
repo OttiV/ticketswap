@@ -16,23 +16,23 @@ export default class EventsList extends Component {
   };
 
   render() {
-    const { events } = this.props;
+    const { events,editMode } = this.props;
 
     return (
       <div className="EventsList">
         {!events && "Loading..."}
 
-        {events && (
+        {events && !editMode && (
           <div>
             {events.map(event => event.map(e => this.renderEvent(e)))}
           </div>
-        )}
+          )}
         <div>
-        <button className="EventDetailsButtons" onClick={this.props.onEdit}>
+        {!editMode && (<button className="EventDetailsButtons" onClick={this.props.onEdit}>
             Add Event
-          </button>
+          </button>)}
         </div>
-       {this.props.editMode && (
+       {editMode && (
         <div className="EditForm">
           <EventForm
             values={this.props.formValues}
