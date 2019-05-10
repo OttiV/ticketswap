@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import TicketForm from "./TicketForm";
 import CommentsListContainer from "../comments/CommentsListContainer";
+import { Animated } from "react-animated-css";
 import "../events/EventDetails.css";
 import "./TicketsList.css";
-import { Animated } from "react-animated-css";
+
 
 export default class TicketDetails extends Component {
   renderComment = comment => {
-    console.log("TICKETS AND COMMENTS PROPS", this.props);
     return (
       <div className="Comments" key={comment.id}>
         User Id: {comment.userId} <br />
@@ -16,10 +16,10 @@ export default class TicketDetails extends Component {
     );
   };
   render() {
-    // console.log("COMMENTS IN TICK DET", this.props.ticket.comments);
     // const comments = this.props.ticket.comments;
-
+    
     const { authenticated, editMode } = this.props;
+
     return (
       <div className="EventDetailsContainer">
         {this.props.ticket && !this.props.editMode && (
@@ -30,18 +30,24 @@ export default class TicketDetails extends Component {
               isVisible={true}
             >
               <h2>Seller: User #{this.props.ticket.userId}</h2>
-
+              
               <img
                 className="images"
                 src={this.props.ticket.picture}
                 alt={this.props.ticket.description}
               />
+              <p>Ticket id: {this.props.ticket.id} </p>
               <p>Description: {this.props.ticket.description} </p>
               <p>Price: € {this.props.ticket.price} </p>
             </Animated>
-            {authenticated && (<button className="EventDetailsButtons" onClick={this.props.onEdit}>
-              Edit
-            </button>)}
+            {authenticated && (
+              <button
+                className="EventDetailsButtons"
+                onClick={this.props.onEdit}
+              >
+                Edit
+              </button>
+            )}
             <CommentsListContainer
               comments={this.props.comments}
               tickets={this.props.tickets}
@@ -52,7 +58,7 @@ export default class TicketDetails extends Component {
                 <div>
                   <h2>Comments:</h2>
 
-                  {comments.map(comment => this.renderComment(comment)))}
+                  {comments.map(comment => this.renderComment(comment))}
                 </div>
               )}
             </div> */}

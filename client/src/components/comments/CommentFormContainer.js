@@ -5,20 +5,25 @@ import CommentForm from "./CommentForm";
 
 class CommentFormContainer extends React.Component {
   state = {
-    comment: ""
+    comment: "",
+    userId:"",
+    ticketId:""
   };
 
   onChange = comment => {
     this.setState({
+      ...this.state.formValues,
       [comment.target.name]: comment.target.value
     });
   };
 
-  onSubmit = comment => {
+  onSubmit = comment => { 
     this.props.createComment(this.state);
     comment.preventDefault();
     this.setState({
-      comment: ""
+      comment: "",
+      userId:"",
+      ticketId:""
     });
   };
 
@@ -44,7 +49,7 @@ const mapStateToProps = state => ({
   comment:
     state.comment === null
       ? null
-      : Object.values(state.events).sort((a, b) => b.id - a.id)
+      : Object.values(state.comments).sort((a, b) => b.id - a.id)
 });
 export default connect(
   mapStateToProps,

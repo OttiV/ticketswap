@@ -14,7 +14,10 @@ class EventFormContainer extends React.Component {
 
   onChange = event => {
     this.setState({
-      [event.target.name]: event.target.value
+      formValues: {
+        ...this.state.formValues,
+        [event.target.name]: event.target.value
+      }
     });
   };
 
@@ -31,20 +34,33 @@ class EventFormContainer extends React.Component {
   };
 
   render() {
+    const { authenticated } = this.props;
     return (
       <div>
+         {authenticated && (
       <EventForm
         onSubmit={this.onSubmit}
         onChange={this.onChange}
         values={this.state}
+        authenticated={this.props.authenticated}
       />
+      )}
       </div>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  authenticated: state.currentUser !== null,
+  users: state.users === null ? null : state.users,
+  event:
+    state.event === null
+      ? null
+      : Object.values(state.events).sort((a, b) => b.id - a.id)
+});
 export default connect(
-  null,
+  mapStateToProps,
   { createEvent }
 )(EventFormContainer);
+
 
