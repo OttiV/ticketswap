@@ -50,6 +50,7 @@ class EventsListContainer extends React.Component {
           formValues={this.state.formValues}
           editMode={this.state.editMode}
           onEdit={this.onEdit}
+          authenticated={this.props.authenticated}
         />
 </Animated>
       </div>

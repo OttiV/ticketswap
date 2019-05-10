@@ -57,6 +57,7 @@ class TicketDetailsContainer extends React.Component {
           onChange={this.onChange}
           onSubmit={this.onSubmit}
           formValues={this.state.formValues}
+          authenticated={this.props.authenticated}
         />
         {authenticated && (
           <CommentFormContainer

@@ -39,9 +39,9 @@ export default class TicketDetails extends Component {
               <p>Description: {this.props.ticket.description} </p>
               <p>Price: € {this.props.ticket.price} </p>
             </Animated>
-            <button className="EventDetailsButtons" onClick={this.props.onEdit}>
+            {authenticated && (<button className="EventDetailsButtons" onClick={this.props.onEdit}>
               Edit
-            </button>
+            </button>)}
             <CommentsListContainer
               comments={this.props.comments}
               tickets={this.props.tickets}

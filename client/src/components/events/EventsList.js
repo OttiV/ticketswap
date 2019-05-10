@@ -16,7 +16,7 @@ export default class EventsList extends Component {
   };
 
   render() {
-    const { events,editMode } = this.props;
+    const { events,editMode,authenticated } = this.props;
 
     return (
       <div className="EventsList">
@@ -28,7 +28,7 @@ export default class EventsList extends Component {
           </div>
           )}
         <div>
-        {!editMode && (<button className="EventDetailsButtons" onClick={this.props.onEdit}>
+        {!editMode && authenticated &&(<button className="EventDetailsButtons" onClick={this.props.onEdit}>
             Add Event
           </button>)}
         </div>

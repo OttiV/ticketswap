@@ -8,7 +8,7 @@ export class Fraudrisk extends BaseEntity {
   @PrimaryGeneratedColumn()
   id?: number;
 
-  @Column()
+  @Column({default: 5})
   risk: number;
 
   @OneToOne(_ => Ticket, ticket => ticket.fraudrisk) // specify inverse side as a second parameter

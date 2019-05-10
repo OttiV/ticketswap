@@ -6,7 +6,8 @@ import {
   ManyToOne,
   OneToMany,
   OneToOne,
-  JoinColumn
+  JoinColumn,
+  CreateDateColumn
 } from "typeorm";
 import { IsString, MinLength, IsUrl } from "class-validator";
 import { Comment } from "../comments/entity";
@@ -47,10 +48,13 @@ export class Ticket extends BaseEntity {
   @Column("integer", { name: "user_id" })
   userId: number;
 
-  @OneToOne(_ => Fraudrisk, fraudrisk => fraudrisk.ticket) 
+  @OneToOne(_ => Fraudrisk, fraudrisk => fraudrisk.ticket)
   @JoinColumn()
   fraudrisk: Fraudrisk;
 
   @Column("integer", { name: "fraudrisk_risk" })
   fraudriskRisk: number;
+
+  @CreateDateColumn()
+  createdDate: Date;
 }
