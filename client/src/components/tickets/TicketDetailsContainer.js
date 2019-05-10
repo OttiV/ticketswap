@@ -14,6 +14,7 @@ class TicketDetailsContainer extends React.Component {
   state = { editMode: false };
 
   onEdit = () => {
+    //console.log("Check the state onClickhere:", this.state);
     this.setState({
       editMode: true,
       formValues: {
@@ -38,10 +39,12 @@ class TicketDetailsContainer extends React.Component {
     this.setState({
       editMode: false
     });
+    console.log("this.state test", this.state);
     this.props.updateTicket(this.props.ticket.id, this.state.formValues);
   };
   render() {
     const {authenticated, editMode}= this.props
+    // const commentRisk = ticket.map(ticket=> ticket.filter(t=> t.comment.length> 3))
  
     return (
       <div>

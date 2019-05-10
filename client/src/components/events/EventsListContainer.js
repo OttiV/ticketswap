@@ -1,9 +1,8 @@
 import React from "react";
-import { connect } from "react-redux";
 import { loadEvents, createEvent } from "../../actions/events";
+import { connect } from "react-redux";
 import { Animated } from "react-animated-css";
 import EventsList from "./EventsList";
-
 
 class EventsListContainer extends React.Component {
   componentDidMount() {
@@ -36,7 +35,7 @@ class EventsListContainer extends React.Component {
 
   render() {
     console.log("TEST EVENT LIST CONTAINER", this.props);
-    const { users, authenticated, editMode } = this.props;
+    const { users, authenticated } = this.props;
     return (
       <div className="EventList">
        <Animated
@@ -54,7 +53,6 @@ class EventsListContainer extends React.Component {
           authenticated={this.props.authenticated}
         />
 </Animated>
-
       </div>
     );
   }
