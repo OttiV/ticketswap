@@ -16,12 +16,12 @@ export class Comment extends BaseEntity {
   @ManyToOne(_ => Ticket, ticket => ticket.comments)
   ticket: Ticket[];
 
-  @Column("integer", { nullable: true })
+  @Column("integer", { name: "ticket_id" })
   ticketId: number;
   
   @ManyToOne(_ => User, user => user.comment)
   user: User[];
 
-  @Column("integer", { nullable: true })
+  @Column("integer", { name: "user_id" })
   userId: number;
 }
