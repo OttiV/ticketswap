@@ -2,10 +2,12 @@ import { JsonController, Authorized, Post, Param, HttpCode, NotFoundError, Get, 
 import { Event } from "./entities";
 import { io } from "../index";
 
+
 @JsonController()
 export default class EventController {
   @Get("/events")
   async allEvents() {
+   
     const events = await Event.find();
     return { events };
   }

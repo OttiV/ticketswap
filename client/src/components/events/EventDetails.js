@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import TicketsListContainer from "../tickets/TicketsListContainer";
 import { Link } from "react-router-dom";
 import "./EventDetails.css";
+import { Animated } from "react-animated-css";
 
 export default class EventDetails extends Component {
   renderTicket = ticket => {
@@ -28,16 +29,18 @@ export default class EventDetails extends Component {
     return (
       <div className="EventDetailsContainer">
         <div className="EventDetails">
-          <h1 className="EventTitle">{this.props.event.name} </h1>
-          <img
-            className="EventImage"
-            src={this.props.event.picture}
-            alt={this.props.event.description}
-          />
-          <p>{this.props.event.description} </p>
-          <p>from the {this.props.event.startDate} </p>
-          <p>untill the {this.props.event.endDate} </p>
-          <br />
+          <Animated animationIn="bounceInLeft" animationOut="fadeOut" isVisible={true}>
+            <h1 className="EventTitle">{this.props.event.name} </h1>
+            <img
+              className="EventImage"
+              src={this.props.event.picture}
+              alt={this.props.event.description}
+            />
+            <p>Description: {this.props.event.description} </p>
+            <p>Starts on the {this.props.event.startDate} </p>
+            <p>Ends the {this.props.event.endDate} </p>
+            <br />
+          </Animated>
         </div>
         <div className="TicketsList">
           {!tickets && "Loading..."}

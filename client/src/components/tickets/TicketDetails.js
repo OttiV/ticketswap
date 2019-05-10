@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import TicketForm from "./TicketForm";
 import CommentsListContainer from "../comments/CommentsListContainer";
 import "../events/EventDetails.css";
-import "./TicketsList.css"
-
+import "./TicketsList.css";
+import { Animated } from "react-animated-css";
 
 export default class TicketDetails extends Component {
   renderComment = comment => {
@@ -16,27 +16,32 @@ export default class TicketDetails extends Component {
     );
   };
   render() {
-    
     // console.log("COMMENTS IN TICK DET", this.props.ticket.comments);
     // const comments = this.props.ticket.comments;
-    
+
     const { authenticated, editMode } = this.props;
     return (
       <div className="EventDetailsContainer">
         {this.props.ticket && !this.props.editMode && (
           <div className="EventDetails">
-            <h2>Seller: User #{this.props.ticket.userId}</h2>
-           
-            <img
-              className="images"
-              src={this.props.ticket.picture}
-              alt={this.props.ticket.description}
-            />
-            <p>Description: {this.props.ticket.description} </p>
-            <p>Price: € {this.props.ticket.price} </p>
-            <button className="EventDetailsButtons" onClick={this.props.onEdit}>
+            <Animated
+              animationIn="bounceInRight"
+              animationOut="fadeOut"
+              isVisible={true}
+            >
+              <h2>Seller: User #{this.props.ticket.userId}</h2>
+
+              <img
+                className="images"
+                src={this.props.ticket.picture}
+                alt={this.props.ticket.description}
+              />
+              <p>Description: {this.props.ticket.description} </p>
+              <p>Price: € {this.props.ticket.price} </p>
+            </Animated>
+            {authenticated && (<button className="EventDetailsButtons" onClick={this.props.onEdit}>
               Edit
-            </button>
+            </button>)}
             <CommentsListContainer
               comments={this.props.comments}
               tickets={this.props.tickets}

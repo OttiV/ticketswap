@@ -88,7 +88,6 @@ import { connect } from "react-redux";
       }
     }
     const mapStateToProps = state => ({
-    
       user: state.user,
       events:state.events,
       comments: state.comments,

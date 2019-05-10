@@ -38,7 +38,8 @@ export default class LoginForm extends PureComponent {
           </label>
 
   				<button className="submit" type="submit">Login</button>
-  			</form>
+  			
+				</form>
 		  </div>)
 	}
 }
