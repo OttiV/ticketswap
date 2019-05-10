@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import EventForm from "./EventForm"
+import EventFormContainer from "./EventForm"
 import "./EventsList.css";
 
 export default class EventsList extends Component {
@@ -34,10 +34,11 @@ export default class EventsList extends Component {
         </div>
        {editMode && (
         <div className="EditForm">
-          <EventForm
+          <EventFormContainer
             values={this.props.formValues}
             onChange={this.props.onChange}
             onSubmit={this.props.onSubmit}
+            event={this.props.event}
           />
         </div>
       )}

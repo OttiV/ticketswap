@@ -9,7 +9,7 @@ class CommentsListContainer extends React.Component {
   }
 
   render() {
-    console.log("COMMENT LIST CONTAINER", this.props);
+  
     return (
       <div>
         <CommentsList comments={this.props.comments} ticket={this.props.ticket} />

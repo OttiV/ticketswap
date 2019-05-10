@@ -16,7 +16,6 @@ export const loadTickets = () => dispatch => {
   request
     .get(`${baseUrl}/tickets`)
     .then(response =>{
-      console.log("response:", response);
       dispatch(fetchTickets(response.body))
     })
     .catch(err => console.error(err));
@@ -31,7 +30,6 @@ export const loadTicket = id => dispatch => {
   request
     .get(`${baseUrl}/tickets/${id}`)
     .then(response => {
-      console.log(response.body);
       dispatch(ticketFetched(response.body));
     })
     .catch(console.error);
