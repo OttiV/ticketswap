@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import TicketDetails from "./TicketDetails";
-import { loadTicket, updateTicket } from "../../actions/tickets";
+import { getTickets, createTicket } from "../../actions/tickets";
 import CommentFormContainer from "../comments/CommentFormContainer";
 
 
 class TicketDetailsContainer extends React.Component {
   componentDidMount() {
     console.log("TICKET DETAILS", this.props.match.params.id);
-    this.props.loadTicket(this.props.match.params.id);
+    this.props.getTickets(this.props.match.params.id);
   }
 
   state = { editMode: false };
@@ -38,7 +38,7 @@ class TicketDetailsContainer extends React.Component {
     this.setState({
       editMode: false
     });
-    this.props.updateTicket(this.props.ticket.id, this.state.formValues);
+    this.props.createTicket(this.props.ticket.id, this.state.formValues);
   };
   render() {
     const {authenticated, editMode}= this.props
@@ -78,5 +78,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { loadTicket, updateTicket }
+  { getTickets, createTicket }
 )(TicketDetailsContainer);

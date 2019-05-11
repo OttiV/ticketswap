@@ -25,22 +25,26 @@ export default class EventDetails extends Component {
     );
   };
   render() {
-    const tickets = this.props.event.tickets;
+    const {events} = this.props
+    console.log("EVENTS", this.props.events)
+    const tickets = this.props.thisEvent.tickets;
+
+    console.log('THISEVENT', this.props.thisEvent)
     return (
       <div className="EventDetailsContainer">
         <div className="EventDetails">
-          <Animated animationIn="bounceInLeft" animationOut="fadeOut" isVisible={true}>
-            <h1 className="EventTitle">{this.props.event.name} </h1>
+          {this.props.thisEvent && (<Animated animationIn="bounceInLeft" animationOut="fadeOut" isVisible={true}>
+            <h1 className="EventTitle">{this.props.thisEvent.name} </h1>
             <img
               className="EventImage"
-              src={this.props.event.picture}
-              alt={this.props.event.description}
+              src={this.props.thisEvent.picture}
+              alt={this.props.thisEvent.description}
             />
-            <p>Description: {this.props.event.description} </p>
-            <p>Starts on the {this.props.event.startDate} </p>
-            <p>Ends the {this.props.event.endDate} </p>
+            <p>Description: {this.props.thisEvent.description} </p>
+            <p>Starts on the {this.props.thisEvent.startDate} </p>
+            <p>Ends the {this.props.thisEvent.endDate} </p>
             <br />
-          </Animated>
+          </Animated>)}
         </div>
         <div className="TicketsList">
           {!tickets && "Loading..."}
@@ -48,9 +52,9 @@ export default class EventDetails extends Component {
             {tickets && (
               <div className="Tickets">
                 {tickets.map(ticket => this.renderTicket(ticket))}
-              </div>
+              </div> 
             )}
-          </div>
+           </div>
         </div>
       </div>
     );

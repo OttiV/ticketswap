@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createEvent } from "../../actions/events";
+import { userId } from "../../jwt";
 import EventForm from "./EventForm";
 
 class EventFormContainer extends React.Component {
@@ -9,7 +10,9 @@ class EventFormContainer extends React.Component {
     description: "",
     startDate: "",
     endDate: "",
-    picture: ""
+    picture: "",
+    userId: this.props.userId
+
   };
 
   onChange = event => {
@@ -29,12 +32,14 @@ class EventFormContainer extends React.Component {
       description: "",
       startDate: "",
       endDate: "",
-      picture: ""
+      picture: "",
+      userId: this.props.userId
     });
   };
 
   render() {
     const { authenticated } = this.props;
+    console.log("EVENT FORMMMM", this.props);
     return (
       <div>
          {authenticated && (
@@ -52,6 +57,7 @@ class EventFormContainer extends React.Component {
 
 const mapStateToProps = state => ({
   authenticated: state.currentUser !== null,
+  userId: state.currentUser && userId(state.currentUser.jwt),
   users: state.users === null ? null : state.users,
   event:
     state.event === null

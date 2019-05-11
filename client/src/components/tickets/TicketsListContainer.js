@@ -1,24 +1,28 @@
 import React from "react";
-import { loadTickets } from "../../actions/tickets";
+import { getTickets } from "../../actions/tickets";
 import { connect } from "react-redux";
 import TicketsList from "./TicketsList";
+import { userId } from "../../jwt";
 
 class TicketsListContainer extends React.Component {
   componentDidMount() {
-    this.props.loadTickets();
+    this.props.getTickets();
   }
 
   render() {
-
     return (
       <div>
-        <TicketsList event={this.props.event} tickets={this.props.tickets} />
+        <TicketsList events={this.props.events} tickets={this.props.tickets} />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
+  authenticated: state.currentUser !== null,
+  users: state.users === null ? null : state.users,
+  userId: state.currentUser && userId(state.currentUser.jwt),
+  events: state.events,
   tickets:
     state.tickets === null
       ? null
@@ -27,5 +31,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { loadTickets }
+  { getTickets }
 )(TicketsListContainer);

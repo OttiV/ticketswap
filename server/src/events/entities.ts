@@ -22,13 +22,16 @@ export class Event extends BaseEntity {
   @Column('text')
   picture: string;
 
-  @IsDate()
+  // @IsDate()
   @Column('date')
   startDate: Date;
 
-  @IsDate()
+  // @IsDate()
   @Column('date')
   endDate: Date;
+
+  @Column("integer", { name: "user_id" })
+  userId: number;
 
   @OneToMany(_ => Ticket, tickets => tickets.event, { eager: true })
   tickets: Ticket[];

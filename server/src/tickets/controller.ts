@@ -1,4 +1,3 @@
-
 import {
   JsonController,
   Get,
@@ -8,22 +7,30 @@ import {
   NotFoundError,
   Post,
   HttpCode,
-  Authorized
+  Authorized,
+  CurrentUser
 } from "routing-controllers";
 import { Ticket } from "./entity";
+import User from "../users/entity";
 import { io } from "../index";
 
 @JsonController()
 export default class TicketController {
   @Get("/tickets")
-  async allTickets() {
-    const tickets = await Ticket.find();
-    return { tickets };
+  getTickets() {
+    return Ticket.find();
   }
 
   @Get("/tickets/:id")
   getTicket(@Param("id") id: number) {
     return Ticket.findOneById(id);
+  }
+
+  @Authorized()
+  @Post("/tickets")
+  @HttpCode(201)
+  createTicket(@Body() ticket: Ticket) {
+    return ticket.save();
   }
 
   @Authorized()
@@ -34,17 +41,4 @@ export default class TicketController {
 
     return Ticket.merge(ticket, update).save();
   }
-
-  @Authorized()
-  @Post("/tickets")
-  @HttpCode(201)
-  createTicket(@Body() ticket: Ticket) {
-    io.emit("action", {
-      type: "TICKET_CREATE_SUCCESS",
-      ticket
-    });
-
-  return ticket.save();
-}
-
 }

@@ -4,8 +4,9 @@ import "./EventForm.css";
 export default class EventForm extends React.Component {
   render() {
     return (
-      <div className={"EventForm"}>
-        <form onSubmit={this.props.onSubmit}>
+   
+        <form className={"EventForm"} 
+        onSubmit={this.props.onSubmit}>
           <label htmlFor="name">Title:</label>
           <br />
           <input
@@ -26,19 +27,19 @@ export default class EventForm extends React.Component {
             className={"EventForm_textarea"}
           />
           <br />
-          <label htmlFor="start_date">Start Date:</label>
+          <label htmlFor="startDate">Start Date:</label>
           <br />
           <input
-            name="start_date"
+            name="startDate"
             value={this.props.startDate}
             onChange={this.props.onChange}
             className={"EventForm_input"}
           />
           <br />
-          <label htmlFor="end_date">End date:</label>
+          <label htmlFor="endDate">End date:</label>
           <br />
           <input
-            name="end_date"
+            name="endDate"
             value={this.props.endDate}
             onChange={this.props.onChange}
             className={"EventForm_input"}
@@ -61,7 +62,7 @@ export default class EventForm extends React.Component {
             Add
           </button>
         </form>
-      </div>
+      
     );
   }
 }

@@ -3,14 +3,14 @@ import { Event } from "./entities";
 import { io } from "../index";
 
 
+
 @JsonController()
 export default class EventController {
   @Get("/events")
-  async allEvents() {
-   
-    const events = await Event.find();
-    return { events };
-  }
+    getEvents() {
+      return Event.find()
+    }
+  
 
   @Get("/events/:id([0-9]+)")
   getEvent(@Param("id") id: number) {
@@ -21,10 +21,11 @@ export default class EventController {
   @Post("/events")
   @HttpCode(201)
   createEvent(@Body() event: Event) {
-      io.emit("action", {
-        type: "EVENT_CREATE_SUCCESS",
-        event
-      });
+    // console.log("EVENT", event)
+    //   io.emit("action", {
+    //     type: "ADD_EVENT",
+    //     payload: event
+    //   });
 
     return event.save();
   }

@@ -7,7 +7,9 @@ class TicketFormContainer extends Component {
   state = {
     description: "",
     price: "",
-    picture: ""
+    picture: "",
+    eventId: this.props.eventId,
+    userId: this.props.userId
   };
 
   onChange = ticket => {
@@ -23,11 +25,14 @@ class TicketFormContainer extends Component {
     this.setState({
       description: "",
       price: "",
-      picture: ""
+      picture: "",
+      eventId: this.props.eventId,
+      userId: this.props.userId
     });
   };
 
   render() {
+    console.log("TICKET FORM", this.props);
     return (
       <TicketForm
         onSubmit={this.onSubmit}
@@ -37,8 +42,15 @@ class TicketFormContainer extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  authenticated: state.currentUser !== null,
+  userId: state.currentUser && userId(state.currentUser.jwt),
+  users: state.users === null ? null : state.users,
+  event: state.event,
+  ticket: state.ticket
+});
 
 export default connect(
-  null,
+  mapStateToProps,
   { createTicket }
 )(TicketFormContainer);

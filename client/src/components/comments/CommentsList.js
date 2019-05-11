@@ -13,7 +13,7 @@ export default class CommentsList extends Component {
 
   render() {
     const { comments } = this.props;
-    console.log("COMMENT LIST", this.props.ticket);
+    console.log("COMMENT LIST", this.props.comments);
     const checkComments = comments.map(comment =>
       comment.filter(c => c.ticketId === this.props.ticket.id)
     );

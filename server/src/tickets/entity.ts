@@ -5,14 +5,14 @@ import {
   Entity,
   ManyToOne,
   OneToMany,
-  OneToOne,
-  JoinColumn,
+  // OneToOne,
+  // JoinColumn,
   CreateDateColumn
 } from "typeorm";
 import { IsString, MinLength, IsUrl } from "class-validator";
 import { Comment } from "../comments/entity";
 import { Event } from "../events/entities";
-import { Fraudrisk } from "../fraudRisks/entity";
+// import { Fraudrisk } from "../fraudRisks/entity";
 import User from "../users/entity";
 
 @Entity()
@@ -24,7 +24,7 @@ export class Ticket extends BaseEntity {
   @Column("text")
   picture: string;
 
-  // @IsNumber()
+  
   @Column()
   price: number;
 
@@ -32,6 +32,9 @@ export class Ticket extends BaseEntity {
   @MinLength(5)
   @Column("text")
   description: string;
+
+  // @Column()
+  // fraud: number;
 
   @ManyToOne(_ => Event, event => event.tickets)
   event: Event[];
@@ -48,12 +51,12 @@ export class Ticket extends BaseEntity {
   @Column("integer", { name: "user_id" })
   userId: number;
 
-  @OneToOne(_ => Fraudrisk, fraudrisk => fraudrisk.ticket)
-  @JoinColumn()
-  fraudrisk: Fraudrisk;
+  // @OneToOne(_ => Fraudrisk, fraudrisk => fraudrisk.ticket)
+  // @JoinColumn()
+  // fraudrisk: Fraudrisk;
 
-  @Column("integer", { name: "fraudrisk_risk" })
-  fraudriskRisk: number;
+  // @Column("integer", { name: "fraudrisk_risk" })
+  // fraudriskRisk: number;
 
   @CreateDateColumn()
   createdDate: Date;

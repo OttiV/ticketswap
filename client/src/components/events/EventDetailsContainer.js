@@ -1,13 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import { loadEvent } from "../../actions/events";
-import { createTicket } from "../../actions/tickets";
+import { getEvents } from "../../actions/events";
+import { getTickets, createTicket } from "../../actions/tickets";
 import EventDetails from "./EventDetails";
 import TicketForm from "../tickets/TicketForm";
+import { userId } from "../../jwt";
 
 class EventDetailsContainer extends React.Component {
   componentDidMount() {
-    this.props.loadEvent(this.props.match.params.id);
+    // this.props.createEvent(this.props.match.params.id);
+    this.props.getEvents();
+    this.props.getTickets();
   }
 
   state = { editMode: false };
@@ -22,7 +25,14 @@ class EventDetailsContainer extends React.Component {
   };
   onEdit = () => {
     this.setState({
-      editMode: true
+      editMode: true,
+      formValues: {
+        description: "",
+        price: "",
+        picture: "",
+        userId: this.props.userId,
+        eventId: this.props.match.params.id
+      }
     });
   };
 
@@ -31,34 +41,44 @@ class EventDetailsContainer extends React.Component {
     this.setState({
       editMode: false
     });
+    console.log(this.state.formValues);
     this.props.createTicket(this.state.formValues);
   };
 
   render() {
-    
-    const { authenticated} = this.props;
+    console.log("TEST EVENT DETAILS CONTAINER", this.props);
+    const { authenticated, events } = this.props;
+    const editMode = this.state.editMode;
+    const thisEvent =
+      events && events.find(e => e.id == this.props.match.params.id);
     return (
       <div className="EventDetailsContainer">
-        <EventDetails
-          event={this.props.event}
-          onEdit={this.props.onEdit}
-          editMode={this.state.editMode}
-          onChange={this.onChange}
-          onSubmit={this.onSubmit}
-          formValues={this.state.formValues}
-          authenticated={this.props.authenticated}
-        />
-       
-        {authenticated && (
+        {!editMode && (
           <div>
-          <h2>Add a ticket</h2>
-          <TicketForm
-            TicketForm
-            values={this.props.formValues}
-            onChange={this.props.onChange}
-            onSubmit={this.props.onSubmit}
-            ticket={this.props.ticket}
-          />
+            <EventDetails
+              events={this.props.events}
+              onEdit={this.props.onEdit}
+              editMode={this.state.editMode}
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+              formValues={this.state.formValues}
+              authenticated={this.props.authenticated}
+              thisEvent={thisEvent}
+            />
+
+            <button onClick={this.onEdit}>Add Ticket</button>
+          </div>
+        )}
+        {authenticated && editMode && (
+          <div>
+            <h2>Add a ticket</h2>
+            <TicketForm
+              TicketForm
+              values={this.state.formValues}
+              onChange={this.onChange}
+              onSubmit={this.onSubmit}
+              tickets={this.props.tickets}
+            />
           </div>
         )}
       </div>
@@ -68,15 +88,20 @@ class EventDetailsContainer extends React.Component {
 
 const mapStateToProps = state => ({
   authenticated: state.currentUser !== null,
-  user: state.user,
-  event: state.event,
-  ticket: state.ticket
+  users: state.users === null ? null : state.users,
+  userId: state.currentUser && userId(state.currentUser.jwt),
+  events:
+    state.events === null
+      ? null
+      : Object.values(state.events).sort((a, b) => b.id - a.id),
+  tickets: state.tickets
 });
 
 export default connect(
   mapStateToProps,
   {
-    loadEvent,
+    getTickets,
+    getEvents,
     createTicket
   }
 )(EventDetailsContainer);

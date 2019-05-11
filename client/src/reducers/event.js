@@ -1,4 +1,4 @@
-import { EVENT_FETCHED } from "../actions/events";
+import { EVENT_FETCHED } from "../actions/eventsss";
 
 export default (state = [], action = []) => {
   switch (action.type) {
