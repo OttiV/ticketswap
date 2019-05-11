@@ -6,7 +6,6 @@ import { isExpired } from "../jwt";
 export const ADD_EVENT = "ADD_EVENT";
 export const UPDATE_EVENT = "UPDATE_EVENT";
 export const UPDATE_EVENTS = "UPDATE_EVENTS";
-export const JOIN_EVENT_SUCCESS = "JOIN_EVENT_SUCCESS";
 export const UPDATE_EVENT_SUCCESS = "UPDATE_EVENT_SUCCESS";
 
 const updateEvents = events => ({

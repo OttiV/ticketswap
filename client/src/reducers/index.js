@@ -11,7 +11,7 @@ import signup from "./signup";
 import events from "./events";
 
 export default {
-  comment,
+  // comment,
   comments,
   event,
   events,

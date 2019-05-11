@@ -6,7 +6,7 @@ import { Animated } from "react-animated-css";
 
 export default class EventDetails extends Component {
   renderTicket = ticket => {
-    console.log("TICKETS AND EVENTS PROPS", this.props);
+    
     return (
       <div className="Ticket" key={ticket.id}>
         <Link to={`/tickets/${encodeURIComponent(ticket.id)}`}>
@@ -26,10 +26,9 @@ export default class EventDetails extends Component {
   };
   render() {
     const {events} = this.props
-    console.log("EVENTS", this.props.events)
+  
     const tickets = this.props.thisEvent.tickets;
 
-    console.log('THISEVENT', this.props.thisEvent)
     return (
       <div className="EventDetailsContainer">
         <div className="EventDetails">
@@ -46,11 +45,13 @@ export default class EventDetails extends Component {
             <br />
           </Animated>)}
         </div>
+        {/* <TicketsListContainer /> */}
         <div className="TicketsList">
           {!tickets && "Loading..."}
           <div>
             {tickets && (
               <div className="Tickets">
+              
                 {tickets.map(ticket => this.renderTicket(ticket))}
               </div> 
             )}

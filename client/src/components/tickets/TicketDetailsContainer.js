@@ -1,14 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import TicketDetails from "./TicketDetails";
-import { getTickets, createTicket } from "../../actions/tickets";
-import CommentFormContainer from "../comments/CommentFormContainer";
-
+import { getTickets } from "../../actions/tickets";
+import { getComments, createComment } from "../../actions/comments";
+import CommentForm from "../comments/CommentForm";
+import { userId } from "../../jwt";
 
 class TicketDetailsContainer extends React.Component {
   componentDidMount() {
-    console.log("TICKET DETAILS", this.props.match.params.id);
-    this.props.getTickets(this.props.match.params.id);
+    this.props.getTickets();
+    this.props.getComments();
   }
 
   state = { editMode: false };
@@ -17,53 +18,61 @@ class TicketDetailsContainer extends React.Component {
     this.setState({
       editMode: true,
       formValues: {
-        picture: this.props.ticket.picture,
-        description: this.props.ticket.description,
-        price: this.props.ticket.price
+        comment: "",
+        userId: this.props.userId,
+        ticketId: this.props.match.params.id
       }
     });
   };
 
-  onChange = ticket => {
+  onChange = comment => {
     this.setState({
       formValues: {
         ...this.state.formValues,
-        [ticket.target.name]: ticket.target.value
+        [comment.target.name]: comment.target.value
       }
     });
   };
 
-  onSubmit = ticket => {
-    ticket.preventDefault();
+  onSubmit = comment => {
+    comment.preventDefault();
     this.setState({
       editMode: false
     });
-    this.props.createTicket(this.props.ticket.id, this.state.formValues);
+    console.log("FORM VALUES", this.state.formValues);
+    this.props.createComment(this.state.formValues);
   };
   render() {
-    const {authenticated, editMode}= this.props
- 
+    const { authenticated, tickets } = this.props;
+    const editMode = this.state.editMode
+    const thisTicket =
+      tickets && tickets.find(t => t.id == this.props.match.params.id);
+
     return (
-      <div>
-        <TicketDetails
+      <div className="EventDetailsContainer">
+        <div>
         
-          onEdit={this.onEdit}
-          editMode={this.state.editMode}
-          ticket={this.props.ticket}
-          user={this.props.user}
-          onChange={this.onChange}
-          onSubmit={this.onSubmit}
-          formValues={this.state.formValues}
-          authenticated={this.props.authenticated}
-        />
-        {authenticated && (
-          <CommentFormContainer
-          values={this.props.formValues}
-          onChange={this.props.onChange}
-          onSubmit={this.props.onSubmit}
-          comment={this.props.comment}
-        />
-         )} 
+          <TicketDetails
+            thisTicket={thisTicket}
+            onEdit={this.onEdit}
+            editMode={this.state.editMode}
+            tickets={this.props.tickets}
+            user={this.props.user}
+            onChange={this.onChange}
+            onSubmit={this.onSubmit}
+            formValues={this.state.formValues}
+            authenticated={this.props.authenticated}
+          />
+          <button className="EventDetailsButtons" onClick={this.onEdit}>Leave a comment</button>
+        </div>
+        {authenticated && editMode &&(
+          <CommentForm
+            values={this.state.formValues}
+            onChange={this.onChange}
+            onSubmit={this.onSubmit}
+            comments={this.props.comments}
+          />
+        )}
       </div>
     );
   }
@@ -71,12 +80,19 @@ class TicketDetailsContainer extends React.Component {
 
 const mapStateToProps = state => ({
   authenticated: state.currentUser !== null,
-  user: state.user,
-  ticket: state.ticket,
-  comment: state.comment
+  users: state.users === null ? null : state.users,
+  userId: state.currentUser && userId(state.currentUser.jwt),
+  tickets:
+    state.tickets === null
+      ? null
+      : Object.values(state.tickets).sort((a, b) => b.id - a.id),
+  comments:
+    state.comments === null
+      ? null
+      : Object.values(state.comments).sort((a, b) => b.id - a.id)
 });
 
 export default connect(
   mapStateToProps,
-  { getTickets, createTicket }
+  { getTickets, createComment, getComments }
 )(TicketDetailsContainer);

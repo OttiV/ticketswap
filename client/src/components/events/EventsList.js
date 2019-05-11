@@ -17,7 +17,6 @@ export default class EventsList extends Component {
 
   render() {
     const { events, editMode, authenticated } = this.props;
-    // console.log("EVENTS WHERE??", this.props)
 
     return (
       <div className="EventsList">

@@ -16,9 +16,8 @@ import { io } from "../index";
 @JsonController()
 export default class CommentController {
   @Get("/comments")
-  async allComments() {
-    const comments = await Comment.find();
-    return { comments };
+  getComments() {
+    return  Comment.find()
   }
 
   @Get("/comments/:id([0-9]+)")
@@ -30,11 +29,6 @@ export default class CommentController {
   @Post("/comments")
   @HttpCode(201)
   createComment(@Body() comment: Comment) {
-    io.emit("action", {
-      type: "ADD_COMMENT",
-      payload: comment
-    });
-
     return comment.save();
   }
 
@@ -46,10 +40,6 @@ export default class CommentController {
   ) {
     const comment = await Comment.findOneById(id);
     if (!comment) throw new NotFoundError("Cannot find comment");
-    io.emit("action", {
-      type: "UPDATE_COMMENT",
-      payload: await Comment.findOneById(comment.id)
-    });
     return Comment.merge(comment, update).save();
   }
 }

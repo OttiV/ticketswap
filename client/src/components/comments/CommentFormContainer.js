@@ -7,8 +7,7 @@ import CommentForm from "./CommentForm";
 class CommentFormContainer extends React.Component {
   state = {
     comment: "",
-    userId: this.props.userId,
-    ticketId: this.props.ticketId
+    userId: this.props.userId
   };
 
   onChange = comment => {
@@ -24,7 +23,6 @@ class CommentFormContainer extends React.Component {
     this.setState({
       comment: "",
       userId: this.props.userId,
-      ticketId: this.props.ticketId
     });
   };
 
@@ -55,7 +53,7 @@ const mapStateToProps = state => ({
   authenticated: state.currentUser !== null,
   userId: state.currentUser && userId(state.currentUser.jwt),
   users: state.users === null ? null : state.users,
-  ticketId: state.ticket.id,
+  // ticketId: state.ticket.id,
   ticket: state.ticket,
   comment: state.comment
 });

@@ -11,7 +11,7 @@ import {
   CurrentUser
 } from "routing-controllers";
 import { Ticket } from "./entity";
-import User from "../users/entity";
+// import User from "../users/entity";
 import { io } from "../index";
 
 @JsonController()

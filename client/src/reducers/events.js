@@ -15,17 +15,11 @@ export default (state = null, { type, payload }) => {
       };
 
     case UPDATE_EVENTS:
-      console.log("PAYLOAD", payload);
       return payload.reduce((events, event) => {
           events[event.id] = event;
           return events;
         }, {});
         
-          // payload: payload
-        
-      //   ...state,
-      //   [payload.id]: payload
-      // };
 
     default:
       return state;

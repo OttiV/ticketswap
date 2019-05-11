@@ -26,7 +26,7 @@ export default class CommentsList extends Component {
             <h2>Comments:</h2>
 
             {checkComments.map(comment =>
-              comment.map(t => this.renderComment(t))
+              comment.map(c => this.renderComment(c))
             )}
           </div>
         )}

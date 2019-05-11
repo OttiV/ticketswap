@@ -41,12 +41,11 @@ class EventDetailsContainer extends React.Component {
     this.setState({
       editMode: false
     });
-    console.log(this.state.formValues);
+    
     this.props.createTicket(this.state.formValues);
   };
 
   render() {
-    console.log("TEST EVENT DETAILS CONTAINER", this.props);
     const { authenticated, events } = this.props;
     const editMode = this.state.editMode;
     const thisEvent =

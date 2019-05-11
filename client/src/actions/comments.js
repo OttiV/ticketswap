@@ -1,43 +1,38 @@
-import request from "superagent";
+import * as request from "superagent";
 import { baseUrl } from "../constants";
-export const FETCH_COMMENTS = "FETCH_COMMENTS";
-export const COMMENT_CREATE_SUCCESS = "COMMENT_CREATE_SUCCESS";
-export const COMMENT_FETCHED = "COMMENT_FETCHED";
+import { logout } from "./users";
+import { isExpired } from "../jwt";
 
-const fetchComments = comments => ({
-  type: FETCH_COMMENTS,
-  comments
+export const ADD_COMMENT = "ADD_COMMENT";
+export const UPDATE_COMMENT = "UPDATE_COMMENT";
+export const UPDATE_COMMENTS = "UPDATE_COMMENTS";
+export const UPDATE_COMMENT_SUCCESS = "UPDATE_COMMENT_SUCCESS";
+
+const updateComments = comments => ({
+  type: UPDATE_COMMENTS,
+  payload: comments
 });
 
-export const loadComments = () => dispatch => {
+const addComment = comment => ({
+  type: ADD_COMMENT,
+  payload: comment
+});
+
+const updateCommentSuccess = () => ({
+  type: UPDATE_COMMENT_SUCCESS
+});
+
+export const getComments = () => (dispatch, getState) => {
   request
     .get(`${baseUrl}/comments`)
-    .then(response => {
-      dispatch(fetchComments(response.body));
+    .then(result => {
+      dispatch(updateComments(result.body));
     })
     .catch(err => console.error(err));
 };
 
-export const commentFetched = comment => ({
-  type: COMMENT_FETCHED,
-  comment
-});
-
-export const loadComment = id => dispatch => {
-  request
-    .get(`${baseUrl}/comments/${id}`)
-    .then(response => {
-      dispatch(commentFetched(response.body));
-    })
-    .catch(console.error);
-};
-
-export const commentCreateSuccess = comment => ({
-  type: COMMENT_CREATE_SUCCESS,
-  comment
-});
-
 export const createComment = data => (dispatch, getState) => {
+  console.log(data);
   const state = getState();
   const jwt = state.currentUser.jwt;
 
@@ -45,8 +40,23 @@ export const createComment = data => (dispatch, getState) => {
     .post(`${baseUrl}/comments`)
     .set("Authorization", `Bearer ${jwt}`)
     .send(data)
-    .then(response => {
-      dispatch(commentCreateSuccess(response.body));
+    .then(result => {
+      console.log(result.body);
+      dispatch(addComment(result.body));
     })
-    .catch(console.error);
+    .catch(err => console.error(err));
+};
+
+export const updateComment = (commentId, position) => (dispatch, getState) => {
+  const state = getState();
+  const jwt = state.currentUser.jwt;
+
+  if (isExpired(jwt)) return dispatch(logout());
+
+  request
+    .patch(`${baseUrl}/comments/${commentId}`)
+    .set("Authorization", `Bearer ${jwt}`)
+    .send(position)
+    .then(_ => dispatch(updateCommentSuccess()))
+    .catch(err => console.error(err));
 };

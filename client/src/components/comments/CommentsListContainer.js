@@ -1,11 +1,11 @@
 import React from "react";
-import { loadComments } from "../../actions/comments";
+import { getComments } from "../../actions/comments";
 import { connect } from "react-redux";
 import CommentsList from "./CommentsList";
 
 class CommentsListContainer extends React.Component {
   componentDidMount() {
-    this.props.loadComments();
+    this.props.getComments();
   }
 
   render() {
@@ -28,5 +28,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { loadComments }
+  { getComments }
 )(CommentsListContainer);

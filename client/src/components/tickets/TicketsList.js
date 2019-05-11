@@ -21,6 +21,9 @@ export default class TicketsList extends Component {
   render() {
     console.log("THIS TICKET", this.props.tickets);
     const {tickets} = this.props;
+    const checkTickets = tickets.map(ticket =>
+      ticket.filter(t => t.eventId === this.props.event.id)
+    );
     return (
       <div className="TicketsList">
         {!tickets && "Loading..."}
@@ -28,7 +31,7 @@ export default class TicketsList extends Component {
         {tickets && (
          
             <div>
-              {tickets.map(ticket => this.renderTicket(ticket))}
+              {checkTickets.map(ticket => this.renderTicket(ticket))}
             </div>
           
         )}

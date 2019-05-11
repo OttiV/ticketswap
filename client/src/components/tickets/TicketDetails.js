@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import TicketForm from "./TicketForm";
-import CommentsListContainer from "../comments/CommentsListContainer";
+// import CommentsListContainer from "../comments/CommentsListContainer";
 import { Animated } from "react-animated-css";
 import "../events/EventDetails.css";
 import "./TicketsList.css";
-
 
 export default class TicketDetails extends Component {
   renderComment = comment => {
@@ -16,64 +15,64 @@ export default class TicketDetails extends Component {
     );
   };
   render() {
-    // const comments = this.props.ticket.comments;
+    const comments = this.props.thisTicket.comments;
+
+    const { authenticated, editMode, thisTicket } = this.props;
     
-    const { authenticated, editMode } = this.props;
 
     return (
       <div className="EventDetailsContainer">
-        {this.props.ticket && !this.props.editMode && (
+        {this.props.thisTicket && !this.props.editMode && (
           <div className="EventDetails">
             <Animated
               animationIn="bounceInRight"
               animationOut="fadeOut"
               isVisible={true}
             >
-              <h2>Seller: User #{this.props.ticket.userId}</h2>
-              
+              <h2>Seller: User #{this.props.thisTicket.userId}</h2>
+
               <img
                 className="images"
-                src={this.props.ticket.picture}
-                alt={this.props.ticket.description}
+                src={this.props.thisTicket.picture}
+                alt={this.props.thisTicket.description}
               />
-              <p>Ticket id: {this.props.ticket.id} </p>
-              <p>Description: {this.props.ticket.description} </p>
-              <p>Price: € {this.props.ticket.price} </p>
+              <p>Description: {this.props.thisTicket.description} </p>
+              <p>Price: € {this.props.thisTicket.price} </p>
             </Animated>
-            {authenticated && (
+            {/* {authenticated && (
               <button
                 className="EventDetailsButtons"
                 onClick={this.props.onEdit}
               >
                 Edit
               </button>
-            )}
-            <CommentsListContainer
+            )} */}
+            {/* <CommentsListContainer
               comments={this.props.comments}
               tickets={this.props.tickets}
-            />
-            {/* <div className="CommentsList">
-              {comments < 1 && "No comments have been posted"}
-              {comments && comments > 0 && (
+            /> */}
+            <div className="CommentsList">
+              {comments.length < 1 && "No comments have been posted"}
+              {comments && comments.length > 0 && (
                 <div>
                   <h2>Comments:</h2>
 
                   {comments.map(comment => this.renderComment(comment))}
                 </div>
               )}
-            </div> */}
+            </div>
           </div>
         )}
-        {editMode && (
+        {/* {editMode && (
           <div className="EventForm">
             <TicketForm
               values={this.props.formValues}
               onChange={this.props.onChange}
               onSubmit={this.props.onSubmit}
-              ticket={this.props.ticket}
+              tickets={this.props.tickets}
             />
           </div>
-        )}
+        )} */}
       </div>
     );
   }

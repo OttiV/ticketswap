@@ -23,7 +23,6 @@ const updateTicketSuccess = () => ({
   type: UPDATE_TICKET_SUCCESS
 });
 
-
 export const getTickets = () => (dispatch, getState) => {
   // const state = getState();
   // if (!state.currentUser) return null;
@@ -35,14 +34,14 @@ export const getTickets = () => (dispatch, getState) => {
     .get(`${baseUrl}/tickets`)
     // .set("Authorization", `Bearer ${jwt}`)
     .then(result => {
-
-      dispatch(updateTickets(result.body))})
+      console.log("result.body", result.body);
+      dispatch(updateTickets(result.body));
+    })
     .catch(err => console.error(err));
 };
 
-
 export const createTicket = data => (dispatch, getState) => {
-  console.log(data)
+  console.log(data);
   const state = getState();
   const jwt = state.currentUser.jwt;
 
@@ -53,8 +52,9 @@ export const createTicket = data => (dispatch, getState) => {
     .set("Authorization", `Bearer ${jwt}`)
     .send(data)
     .then(result => {
-      console.log(result.body)
-      dispatch(addTicket(result.body))})
+      console.log(result.body);
+      dispatch(addTicket(result.body));
+    })
     .catch(err => console.error(err));
 };
 
@@ -194,7 +194,6 @@ export const updateTicket = (ticketId, position) => (dispatch, getState) => {
 //   type: UPDATE_TICKET_SUCCESS
 // });
 
-
 // export const getTickets = () => (dispatch, getState) => {
 //   // const state = getState();
 //   // if (!state.currentUser) return null;
@@ -210,7 +209,6 @@ export const updateTicket = (ticketId, position) => (dispatch, getState) => {
 //       dispatch(updateTickets(result.body))})
 //     .catch(err => console.error(err));
 // };
-
 
 // export const createTicket = data => (dispatch, getState) => {
 //   console.log(data)
