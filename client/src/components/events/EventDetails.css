@@ -20,15 +20,13 @@
   max-height:25rem;
 }
 .Tickets {
-  /* border: solid #fff 0.2rem; */
-  /* width: 350px; */
-  /* height: 350px;  */
+
   padding: 0.4rem;
   margin: 0.4rem 0.6rem;
   float: left;
   border-radius: 2rem;
   display: flex;
-  flex-direction: row;
+ 
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -46,7 +44,11 @@
   height: 200px;
   margin: 0 2rem;
 }
-
+.TicketsList{
+  flex-direction:row ;
+  
+  /* max-width: 200px; */
+}
 
 .EventTitle{
   font-weight: 350;

@@ -13,7 +13,7 @@ import {
 import { Ticket } from "./entity";
 import User from "../users/entity";
 import { Event } from "../events/entities";
-import { io } from "../index";
+// import { io } from "../index";
 
 @JsonController()
 export default class TicketController {
@@ -56,8 +56,8 @@ export default class TicketController {
           return ticketQuantityRisk;
         }
       }
-      function timeRisk() {
-        const time = ticket.createdDate.getHours();
+      async function timeRisk() {
+        const time = await ticket.createdDate.getHours();
         if (time > 8 && time < 18) {
           const timerisk = -10;
           return timerisk;
@@ -67,24 +67,24 @@ export default class TicketController {
         }
       }
 
-      const ticketTotalPrice = await thisTicketEvent.tickets.reduce(
-        (totalSoFar, currentTicket) => {
-          return totalSoFar + currentTicket.price;
-        },
-        0
-      );
-      const ticketsAveragePrice =
-        (await ticketTotalPrice) / thisTicketEvent.tickets.length;
-      console.log("ticketTotalPrice", ticketTotalPrice);
-
-      console.log("ticketsAveragePrice", ticketsAveragePrice);
-      function priceRisk() {
+      async function priceRisk() {
+        const ticketTotalPrice = await thisTicketEvent.tickets.reduce(
+          (totalSoFar, currentTicket) => {
+            return totalSoFar + currentTicket.price;
+          },
+          0
+        );
+        const ticketsAveragePrice =
+          (await ticketTotalPrice) / thisTicketEvent.tickets.length;
+        console.log("ticketTotalPrice", ticketTotalPrice);
+  
+        console.log("ticketsAveragePrice", ticketsAveragePrice);
         if (ticket.price < ticketsAveragePrice) {
           const priceDiff = ticketsAveragePrice - ticket.price;
           const priceDiffPercentage = (priceDiff / ticketsAveragePrice) * 100;
           console.log("priceDiffPercentage", priceDiffPercentage);
           if (priceDiffPercentage > 10) {
-            const priceDiffPercentage = 0;
+            const priceDiffPercentage = 10;
             return priceDiffPercentage;
           } else {
             return Math.floor(priceDiffPercentage);
