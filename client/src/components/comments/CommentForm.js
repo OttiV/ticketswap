@@ -22,7 +22,7 @@ export default class CommentForm extends React.Component {
         <button
           type="submit"
           className={"CommentForm_submitButton"}
-          onSubmit={this.props.onSubmit}
+          // onSubmit={this.props.onSubmit}
         >
           Add
         </button>

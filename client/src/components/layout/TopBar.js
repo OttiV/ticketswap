@@ -10,7 +10,7 @@ import AccountIcon from "@material-ui/icons/AccountBox";
 import "./TopBar.css";
 
 const TopBar = props => {
-  const { location, history, user } = props;
+  const { history, user } = props;
 
   return (
     <AppBar className="AppBar" position="absolute" style={{ zIndex: 10, margin: 0 }}>

@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import TicketForm from "./TicketForm";
-// import CommentsListContainer from "../comments/CommentsListContainer";
 import { Animated } from "react-animated-css";
 import "../events/EventDetails.css";
 import "./TicketsList.css";
@@ -15,10 +13,10 @@ export default class TicketDetails extends Component {
     );
   };
   render() {
-    const comments = this.props.thisTicket.comments;
+    const comments = this.props.comments;
 
     const { authenticated, editMode, thisTicket } = this.props;
-    
+    const ticketComments = comments && comments.filter(c => c.ticketId == this.props.ticketId);
 
     return (
       <div className="EventDetailsContainer">
@@ -39,40 +37,20 @@ export default class TicketDetails extends Component {
               <p>Description: {this.props.thisTicket.description} </p>
               <p>Price: € {this.props.thisTicket.price} </p>
             </Animated>
-            {/* {authenticated && (
-              <button
-                className="EventDetailsButtons"
-                onClick={this.props.onEdit}
-              >
-                Edit
-              </button>
-            )} */}
-            {/* <CommentsListContainer
-              comments={this.props.comments}
-              tickets={this.props.tickets}
-            /> */}
+           
             <div className="CommentsList">
-              {comments.length < 1 && "No comments have been posted"}
-              {comments && comments.length > 0 && (
+              {/* {ticketComments.length < 1 && "No comments have been posted"} */}
+              {ticketComments && (
                 <div>
                   <h2>Comments:</h2>
 
-                  {comments.map(comment => this.renderComment(comment))}
+                  {ticketComments.map(comment => this.renderComment(comment))}
                 </div>
               )}
             </div>
           </div>
         )}
-        {/* {editMode && (
-          <div className="EventForm">
-            <TicketForm
-              values={this.props.formValues}
-              onChange={this.props.onChange}
-              onSubmit={this.props.onSubmit}
-              tickets={this.props.tickets}
-            />
-          </div>
-        )} */}
+        
       </div>
     );
   }

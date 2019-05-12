@@ -55,8 +55,8 @@ export class Ticket extends BaseEntity {
   // @JoinColumn()
   // fraudrisk: Fraudrisk;
 
-  // @Column("integer", { name: "fraudrisk_risk" })
-  // fraudriskRisk: number;
+  @Column("integer", { name: "fraudrisk_risk", nullable: true })
+  fraudriskRisk: number;
 
   @CreateDateColumn()
   createdDate: Date;

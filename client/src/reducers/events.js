@@ -16,10 +16,9 @@ export default (state = null, { type, payload }) => {
 
     case UPDATE_EVENTS:
       return payload.reduce((events, event) => {
-          events[event.id] = event;
-          return events;
-        }, {});
-        
+        events[event.id] = event;
+        return events;
+      }, {});
 
     default:
       return state;

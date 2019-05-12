@@ -22,7 +22,7 @@ class LoginPage extends PureComponent {
 					 <Animated animationIn="zoomIn" animationOut="fadeOut" isVisible={true}>
             <img
               className="gif"
-              src="https://media.giphy.com/media/12XMGIWtrHBl5e/giphy.gif"
+              src="https://media.giphy.com/media/12XMGIWtrHBl5e/giphy.gif" alt="NOPE"
             /> <br/>
 						{this.props.error}
 						</Animated>

@@ -27,7 +27,7 @@ class SignupPage extends PureComponent {
             >
               <img
                 className="gif"
-                src="https://media.giphy.com/media/12XMGIWtrHBl5e/giphy.gif"
+                src="https://media.giphy.com/media/12XMGIWtrHBl5e/giphy.gif" alt="NOPE"
               />{" "}
               <br />
               {this.props.signup.error}

@@ -1,12 +1,13 @@
 import { ADD_TICKET, UPDATE_TICKET, UPDATE_TICKETS } from "../actions/tickets";
 
 export default (state = null, { type, payload }) => {
+  console.log("type, payload", type, payload);
   switch (type) {
     case ADD_TICKET:
       return {
         ...state,
         [payload.id]: payload
-      };
+      }
 
     case UPDATE_TICKET:
       return {
@@ -17,15 +18,15 @@ export default (state = null, { type, payload }) => {
     case UPDATE_TICKETS:
       console.log("PAYLOAD", payload);
       return payload.reduce((tickets, ticket) => {
-          tickets[ticket.id] = ticket;
-          return tickets;
-        }, {});
-        
-          // payload: payload
-        
-      //   ...state,
-      //   [payload.id]: payload
-      // };
+        tickets[ticket.id] = ticket;
+        return tickets;
+      }, {});
+
+    // payload: payload
+
+    //   ...state,
+    //   [payload.id]: payload
+    // };
 
     default:
       return state;

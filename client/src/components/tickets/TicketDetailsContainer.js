@@ -44,28 +44,32 @@ class TicketDetailsContainer extends React.Component {
   };
   render() {
     const { authenticated, tickets } = this.props;
-    const editMode = this.state.editMode
+    const editMode = this.state.editMode;
     const thisTicket =
       tickets && tickets.find(t => t.id == this.props.match.params.id);
 
     return (
       <div className="EventDetailsContainer">
         <div>
-        
-          <TicketDetails
-            thisTicket={thisTicket}
-            onEdit={this.onEdit}
-            editMode={this.state.editMode}
-            tickets={this.props.tickets}
-            user={this.props.user}
-            onChange={this.onChange}
-            onSubmit={this.onSubmit}
-            formValues={this.state.formValues}
-            authenticated={this.props.authenticated}
-          />
-          <button className="EventDetailsButtons" onClick={this.onEdit}>Leave a comment</button>
+          {tickets && (
+            <TicketDetails
+              tickets={this.props.tickets}
+              onEdit={this.onEdit}
+              editMode={this.state.editMode}
+              onChange={this.onChange}
+              onSubmit={this.onSubmit} 
+              formValues={this.state.formValues}
+              authenticated={this.props.authenticated}
+              thisTicket={thisTicket}
+              comments={this.props.comments}
+              ticketId={this.props.match.params.id}
+            />
+          )}
+          <button className="EventDetailsButtons" onClick={this.onEdit}>
+            Leave a comment
+          </button>
         </div>
-        {authenticated && editMode &&(
+        {authenticated && editMode && (
           <CommentForm
             values={this.state.formValues}
             onChange={this.onChange}

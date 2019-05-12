@@ -43,12 +43,10 @@ class EventsListContainer extends React.Component {
       editMode: false
     });
 
-    
     this.props.createEvent(this.state.formValues);
   };
 
   render() {
-    
     const { users, authenticated } = this.props;
     return (
       <div className="EventList">
@@ -67,10 +65,13 @@ class EventsListContainer extends React.Component {
             authenticated={this.props.authenticated}
           />
         </Animated>
-    {!this.state.editMode && <button onClick={this.onEdit}>add</button>} 
+        {!this.state.editMode && authenticated && (
+          <button className="EventDetailsButtons" onClick={this.onEdit}>
+            Add an event
+          </button>
+        )}
         {authenticated && this.state.editMode && (
           <div className="EditForm">
-            {/* <EventFormContainer */}
             <EventForm
               values={this.state.formValues}
               onChange={this.onChange}

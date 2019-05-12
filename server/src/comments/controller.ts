@@ -29,6 +29,10 @@ export default class CommentController {
   @Post("/comments")
   @HttpCode(201)
   createComment(@Body() comment: Comment) {
+    // io.emit("action", {
+    //   type: "ADD_COMMENT",
+    //   payload: comment
+    // });
     return comment.save();
   }
 
@@ -40,6 +44,7 @@ export default class CommentController {
   ) {
     const comment = await Comment.findOneById(id);
     if (!comment) throw new NotFoundError("Cannot find comment");
+
     return Comment.merge(comment, update).save();
   }
 }

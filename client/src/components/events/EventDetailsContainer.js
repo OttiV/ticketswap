@@ -20,7 +20,8 @@ class EventDetailsContainer extends React.Component {
       formValues: {
         ...this.state.formValues,
         [ticket.target.name]: ticket.target.value
-      }
+      },
+
     });
   };
   onEdit = () => {
@@ -32,11 +33,13 @@ class EventDetailsContainer extends React.Component {
         picture: "",
         userId: this.props.userId,
         eventId: this.props.match.params.id
-      }
+      },
+
     });
   };
 
   onSubmit = ticket => {
+    console.log('this.state.formValues', this.state.formValues)
     ticket.preventDefault();
     this.setState({
       editMode: false
@@ -46,26 +49,29 @@ class EventDetailsContainer extends React.Component {
   };
 
   render() {
-    const { authenticated, events } = this.props;
+    const { authenticated, events, tickets } = this.props;
     const editMode = this.state.editMode;
     const thisEvent =
       events && events.find(e => e.id == this.props.match.params.id);
+
     return (
       <div className="EventDetailsContainer">
-        {!editMode && (
+        {!editMode && events  &&(
           <div>
             <EventDetails
               events={this.props.events}
-              onEdit={this.props.onEdit}
+              onEdit={this.onEdit}
               editMode={this.state.editMode}
               onChange={this.onChange}
               onSubmit={this.onSubmit}
               formValues={this.state.formValues}
               authenticated={this.props.authenticated}
               thisEvent={thisEvent}
+              tickets={this.props.tickets}
+              eventId={this.props.match.params.id}
             />
 
-            <button onClick={this.onEdit}>Add Ticket</button>
+            <button className="EventDetailsButtons" onClick={this.onEdit}>Add Ticket</button>
           </div>
         )}
         {authenticated && editMode && (
