@@ -28,6 +28,7 @@ export default class TicketDetails extends Component {
               isVisible={true}
             >
               <h2>Seller: User #{this.props.thisTicket.userId}</h2>
+              <p>Fraud risk:{this.props.thisTicket.fraudrisk}%</p>
 
               <img
                 className="images"

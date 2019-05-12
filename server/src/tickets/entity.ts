@@ -24,7 +24,6 @@ export class Ticket extends BaseEntity {
   @Column("text")
   picture: string;
 
-  
   @Column()
   price: number;
 
@@ -37,7 +36,7 @@ export class Ticket extends BaseEntity {
   // fraud: number;
 
   @ManyToOne(_ => Event, event => event.tickets)
-  event: Event[];
+  event: Event;
 
   @Column("integer", { name: "event_id" })
   eventId: number;
@@ -46,17 +45,13 @@ export class Ticket extends BaseEntity {
   comments: Comment[];
 
   @ManyToOne(_ => User, user => user.tickets)
-  user: User[];
+  user: User;
 
   @Column("integer", { name: "user_id" })
   userId: number;
 
-  // @OneToOne(_ => Fraudrisk, fraudrisk => fraudrisk.ticket)
-  // @JoinColumn()
-  // fraudrisk: Fraudrisk;
-
-  @Column("integer", { name: "fraudrisk_risk", nullable: true })
-  fraudriskRisk: number;
+  @Column("integer", { name: "fraudrisk", nullable: true })
+  fraudrisk: number;
 
   @CreateDateColumn()
   createdDate: Date;

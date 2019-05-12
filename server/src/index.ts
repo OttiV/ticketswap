@@ -13,7 +13,7 @@ import LoginController from "./logins/controller";
 import EventController from "./events/controller";
 import TicketController from "./tickets/controller";
 import CommentController from "./comments/controller";
-import FraudriskController from "./fraudrisks/controller";
+
 
 const app = new Koa();
 const server = new Server(app.callback());
@@ -27,8 +27,7 @@ useKoaServer(app, {
     LoginController,
     EventController,
     TicketController,
-    CommentController,
-    FraudriskController
+    CommentController
   ],
   authorizationChecker: (action: Action) => {
     const header: string = action.request.headers.authorization;

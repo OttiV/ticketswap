@@ -8,6 +8,7 @@ export default class EventDetails extends Component {
     return (
       <div className="Ticket" key={ticket.id}>
         <Link to={`/tickets/${encodeURIComponent(ticket.id)}`}>
+        Risk: {ticket.fraudrisk}%
           <img
             className="TicketImages"
             src={ticket.picture}
@@ -40,6 +41,7 @@ export default class EventDetails extends Component {
               isVisible={true}
             >
               <h1 className="EventTitle">{this.props.thisEvent.name} </h1>
+              
               <img
                 className="EventImage"
                 src={this.props.thisEvent.picture}

@@ -21,11 +21,6 @@ export default class EventController {
   @Post("/events")
   @HttpCode(201)
   createEvent(@Body() event: Event) {
-    // console.log("EVENT", event)
-    //   io.emit("action", {
-    //     type: "ADD_EVENT",
-    //     payload: event
-    //   });
 
     return event.save();
   }
