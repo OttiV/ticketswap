@@ -70,7 +70,6 @@ class EventDetailsContainer extends React.Component {
               tickets={this.props.tickets}
               eventId={this.props.match.params.id}
             />
-
             <button className="EventDetailsButtons" onClick={this.onEdit}>Add Ticket</button>
           </div>
         )}
