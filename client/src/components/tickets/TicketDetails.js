@@ -16,7 +16,7 @@ export default class TicketDetails extends Component {
     const comments = this.props.comments;
 
     const { authenticated, editMode, thisTicket } = this.props;
-    const ticketComments = comments && comments.filter(c => c.ticketId == this.props.ticketId);
+    const ticketComments = comments && comments.filter(comment => comment.ticketId == this.props.ticketId);
 
     return (
       <div className="EventDetailsContainer">

@@ -51,7 +51,7 @@ class TicketDetailsContainer extends React.Component {
     return (
       <div className="EventDetailsContainer">
         <div>
-          {tickets && (
+          {tickets  &&(
             <TicketDetails
               tickets={this.props.tickets}
               onEdit={this.onEdit}
@@ -70,6 +70,7 @@ class TicketDetailsContainer extends React.Component {
           </button>
         </div>
         {authenticated && editMode && (
+          
           <CommentForm
             values={this.state.formValues}
             onChange={this.onChange}

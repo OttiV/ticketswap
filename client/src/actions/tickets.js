@@ -34,7 +34,7 @@ export const getTickets = () => (dispatch, getState) => {
     .get(`${baseUrl}/tickets`)
     // .set("Authorization", `Bearer ${jwt}`)
     .then(result => {
-      console.log("result.body", result.body);
+      console.log("result.body for tickets", result.body);
       dispatch(updateTickets(result.body));
     })
     .catch(err => console.error(err));

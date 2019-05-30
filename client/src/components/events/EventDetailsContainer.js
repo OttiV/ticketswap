@@ -8,7 +8,6 @@ import { userId } from "../../jwt";
 
 class EventDetailsContainer extends React.Component {
   componentDidMount() {
-    // this.props.createEvent(this.props.match.params.id);
     this.props.getEvents();
     this.props.getTickets();
   }
@@ -52,7 +51,7 @@ class EventDetailsContainer extends React.Component {
     const { authenticated, events, tickets } = this.props;
     const editMode = this.state.editMode;
     const thisEvent =
-      events && events.find(e => e.id == this.props.match.params.id);
+      events && events.find(event => event.id == this.props.match.params.id);
 
     return (
       <div className="EventDetailsContainer">
@@ -98,7 +97,7 @@ const mapStateToProps = state => ({
     state.events === null
       ? null
       : Object.values(state.events).sort((a, b) => b.id - a.id),
-  tickets: state.tickets
+  tickets: state.tickets 
 });
 
 export default connect(

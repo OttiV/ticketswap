@@ -39,7 +39,7 @@ export default class TicketController {
       userId: ticket.userId,
       eventId: ticket.eventId
     }).save();
-    // console.log('ENTITY', entity.id)
+
     const thisTicket = await Ticket.findOneById(entity.id);
     const thisTicketEvent = await Event.find().then(response =>
       response.find(event => event.id === thisTicket.eventId)
@@ -75,21 +75,17 @@ export default class TicketController {
           0
         );
         const ticketsAveragePrice =
-          (await ticketTotalPrice) / thisTicketEvent.tickets.length;
+          (await ticketTotalPrice) / (await thisTicketEvent.tickets.length);
         console.log("ticketTotalPrice", ticketTotalPrice);
-  
+
         console.log("ticketsAveragePrice", ticketsAveragePrice);
         if (ticket.price < ticketsAveragePrice) {
           const priceDiff = ticketsAveragePrice - ticket.price;
           const priceDiffPercentage = (priceDiff / ticketsAveragePrice) * 100;
           console.log("priceDiffPercentage", priceDiffPercentage);
-          if (priceDiffPercentage > 10) {
-            const priceDiffPercentage = 10;
-            return priceDiffPercentage;
-          } else {
-            return Math.floor(priceDiffPercentage);
-          }
-        } else if (ticket.price > ticketsAveragePrice) {
+          return Math.floor(priceDiffPercentage);
+        }
+        if (ticket.price > ticketsAveragePrice) {
           const priceMoreDiff = ticket.price - ticketsAveragePrice;
           const priceMorePercentage =
             (priceMoreDiff / ticketsAveragePrice) * 100;
@@ -137,10 +133,6 @@ export default class TicketController {
       });
       return ticket.save();
     });
-    // io.emit("action", {
-    //   type: "ADD_TICKET",
-    //   payload: thisTicket
-    // });
 
     return await thisTicket.save();
   }

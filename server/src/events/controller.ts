@@ -1,6 +1,6 @@
-import { JsonController, Authorized, Post, Param, HttpCode, NotFoundError, Get, Put, Body } from "routing-controllers";
+import { JsonController, Authorized, Post, Param, HttpCode, Get, Body } from "routing-controllers";
 import { Event } from "./entities";
-import { io } from "../index";
+
 
 
 
@@ -25,15 +25,5 @@ export default class EventController {
     return event.save();
   }
 
-  @Authorized()
-  @Put("/events/:id")
-  async updateEvent(@Param("id") id: number, @Body() update: Partial<Event>) {
-    const event = await Event.findOneById(id);
-    if (!event) throw new NotFoundError("Cannot find event");
-    io.emit("action", {
-      type: "UPDATE_EVENT",
-      payload: await Event.findOneById(event.id)
-    });
-    return Event.merge(event, update).save();
-  }
+  
 }

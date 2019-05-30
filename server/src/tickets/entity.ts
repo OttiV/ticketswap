@@ -32,8 +32,6 @@ export class Ticket extends BaseEntity {
   @Column("text")
   description: string;
 
-  // @Column()
-  // fraud: number;
 
   @ManyToOne(_ => Event, event => event.tickets)
   event: Event;

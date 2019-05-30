@@ -1,5 +1,5 @@
-import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import React, { Component } from "react";
 import LoginPage from "./components/login/LoginPage";
 import SignupPage from "./components/signup/SignupPage";
 import EventsListContainer from "./components/events/EventsListContainer";

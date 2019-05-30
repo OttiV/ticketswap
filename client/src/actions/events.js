@@ -22,26 +22,18 @@ const updateEventSuccess = () => ({
   type: UPDATE_EVENT_SUCCESS
 });
 
-
 export const getEvents = () => (dispatch, getState) => {
-  // const state = getState();
-  // if (!state.currentUser) return null;
-  // const jwt = state.currentUser.jwt;
-
-  // if (isExpired(jwt)) return dispatch(logout());
-
   request
     .get(`${baseUrl}/events`)
-    // .set("Authorization", `Bearer ${jwt}`)
     .then(result => {
-
-      dispatch(updateEvents(result.body))})
+      console.log("result.body for events", result.body);
+      dispatch(updateEvents(result.body));
+    })
     .catch(err => console.error(err));
 };
 
-
 export const createEvent = data => (dispatch, getState) => {
-  console.log(data)
+  console.log(data);
   const state = getState();
   const jwt = state.currentUser.jwt;
 
@@ -52,8 +44,9 @@ export const createEvent = data => (dispatch, getState) => {
     .set("Authorization", `Bearer ${jwt}`)
     .send(data)
     .then(result => {
-      console.log(result.body)
-      dispatch(addEvent(result.body))})
+      console.log(result.body);
+      dispatch(addEvent(result.body));
+    })
     .catch(err => console.error(err));
 };
 
